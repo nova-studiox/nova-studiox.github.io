@@ -11,7 +11,8 @@
 <meta name="apple-mobile-web-app-title" content="NOVA STUDIO">
 
 <link rel="manifest" href="./manifest.json">
-<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<link rel="icon" href="./icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="./icon-192.png">
 
 <title>NOVA STUDIO | ربات ساز نوا</title>
 
@@ -41,12 +42,8 @@ header{
  background:#0b0b0df2;
  z-index:5;
 }
-.logo{
- font-size:22px;
- font-weight:bold;
- color:var(--gold);
- letter-spacing:2px;
-}
+.logo{display:flex;align-items:center;min-width:0}
+.logo img{width:155px;max-width:38vw;height:auto;display:block;object-fit:contain}
 nav{display:flex;gap:8px;align-items:center}
 button{
  cursor:pointer;
@@ -180,7 +177,7 @@ footer{
 <body>
 
 <header>
- <div class="logo">NOVA STUDIO</div>
+ <div class="logo"><img src="./assets/nova-studio-logo.jpg" alt="NOVA STUDIO"></div>
  <nav>
   <button class="secondary" onclick="showPage('home')">خانه</button>
   <button class="secondary" onclick="showPage('releases')">آپدیت‌ها</button>
