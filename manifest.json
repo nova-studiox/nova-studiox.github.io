@@ -1,8 +1,8 @@
 
 {
-  "name": "GARDIS | ربات ساز گاردیس",
-  "short_name": "GARDIS",
-  "description": "ربات ساز گاردیس؛ ساخت و مدیریت ربات روبیکا",
+  "name": "NOVA STUDIO | ربات ساز نوا",
+  "short_name": "NOVA STUDIO",
+  "description": "ربات ساز نوا؛ ساخت و مدیریت ربات روبیکا",
   "lang": "fa",
   "dir": "rtl",
   "start_url": "./",

@@ -1,11 +1,11 @@
 {
-  "app_name": "GARDIS",
+  "app_name": "NOVA STUDIO",
   "latest_version": "1.0.0",
   "release_date": "2026-11-06",
   "platform": "web",
   "download_url": "./",
   "release_notes": [
-    "انتشار اولیه GARDIS",
+    "انتشار اولیه NOVA STUDIO",
     "طراحی رابط کاربری مشکی و طلایی",
     "آماده‌سازی سیستم انتشار و دریافت آپدیت"
   ],
@@ -14,7 +14,7 @@
       "version": "1.0.0",
       "date": "2026-11-06",
       "notes": [
-        "انتشار اولیه GARDIS",
+        "انتشار اولیه NOVA STUDIO",
         "طراحی رابط کاربری جدید"
       ],
       "download_url": "./"

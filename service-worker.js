@@ -1,4 +1,4 @@
-const CACHE_NAME = 'gardis-cache-v3';
+const CACHE_NAME = 'nova-cache-v3';
 
 const APP_FILES = [
   './',
@@ -23,7 +23,7 @@ self.addEventListener('activate', event => {
       await Promise.all(
         keys
           .filter(key =>
-            key.startsWith('gardis-cache-') &&
+            key.startsWith('nova-cache-') &&
             key !== CACHE_NAME
           )
           .map(key => caches.delete(key))
@@ -35,7 +35,7 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('message', event => {
-  if (event.data === 'GARDIS_SKIP_WAITING') {
+  if (event.data === 'NOVA_SKIP_WAITING') {
     self.skipWaiting();
   }
 });
