@@ -181,7 +181,8 @@ footer{
  <nav>
   <button class="secondary" onclick="showPage('home')">خانه</button>
   <button class="secondary" onclick="showPage('releases')">آپدیت‌ها</button>
-  <button class="primary" onclick="showPage('login')">ورود</button>
+  <button class="primary" id="loginNavButton" onclick="showPage('login')">ورود</button>
+  <button class="primary" id="accountNavButton" style="display:none" onclick="showPage('dashboard')">حساب من</button>
  </nav>
 </header>
 
@@ -277,20 +278,21 @@ footer{
  </div>
 </section>
 
+
 <section id="login" class="page auth">
  <div class="card">
   <h2>ورود به نوا</h2>
-  <p class="muted">برای ورود به پنل کاربری</p>
-  <form onsubmit="demoMessage(event)">
-   <input type="text" placeholder="نام کاربری یا ایمیل" required>
-   <input type="password" placeholder="رمز عبور" required>
-   <button class="primary" style="width:100%">ورود</button>
+  <p class="muted">برای ورود به حساب کاربری</p>
+  <form id="loginForm">
+   <input id="loginEmail" type="email" placeholder="ایمیل" autocomplete="email" required>
+   <input id="loginPassword" type="password" placeholder="رمز عبور" autocomplete="current-password" required>
+   <button class="primary" style="width:100%" id="loginButton">ورود</button>
   </form>
   <p class="muted">
    حساب نداری؟
    <span class="link" onclick="showPage('register')">ثبت‌نام کن</span>
   </p>
-  <div class="notice">ورود واقعی پس از اتصال امن بک‌اند فعال می‌شود.</div>
+  <div class="notice" id="loginStatus">اطلاعات حساب خود را وارد کن.</div>
  </div>
 </section>
 
@@ -298,19 +300,30 @@ footer{
  <div class="card">
   <h2>ساخت حساب کاربری</h2>
   <p class="muted">برای استفاده از ربات‌ساز نوا</p>
-  <form onsubmit="demoMessage(event)">
-   <input type="text" placeholder="نام کاربری" required>
-   <input type="email" placeholder="ایمیل" required>
-   <input type="password" placeholder="رمز عبور" required>
-   <button class="primary" style="width:100%">ثبت‌نام</button>
+  <form id="registerForm">
+   <input id="registerUsername" type="text" placeholder="نام کاربری" autocomplete="username" required>
+   <input id="registerEmail" type="email" placeholder="ایمیل" autocomplete="email" required>
+   <input id="registerPassword" type="password" placeholder="رمز عبور (حداقل ۶ کاراکتر)" minlength="6" autocomplete="new-password" required>
+   <button class="primary" style="width:100%" id="registerButton">ثبت‌نام</button>
   </form>
   <p class="muted">
    قبلاً حساب ساخته‌ای؟
    <span class="link" onclick="showPage('login')">وارد شو</span>
   </p>
-  <div class="notice">ثبت‌نام واقعی پس از اتصال امن بک‌اند فعال می‌شود.</div>
+  <div class="notice" id="registerStatus">برای ساخت حساب، اطلاعات را وارد کن.</div>
  </div>
 </section>
+
+<section id="dashboard" class="page auth">
+ <div class="card">
+  <h2>حساب کاربری نوا</h2>
+  <p class="muted">با موفقیت وارد حساب شده‌ای.</p>
+  <p id="dashboardEmail"></p>
+  <button class="primary" id="logoutButton" style="width:100%">خروج از حساب</button>
+  <div class="notice" id="dashboardStatus">حساب کاربری فعال است.</div>
+ </div>
+</section>
+
 
 </main>
 
@@ -318,8 +331,185 @@ footer{
  NOVA STUDIO BOT MAKER · ربات ساز نوا
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 'use strict';
+
+
+const SUPABASE_URL = 'https://chkjhfatplpbdxumjzec.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_IbnPcp59UqIwQ-_imvvaYA_3iE68Jpd';
+
+let supabaseClient = null;
+let currentAuthUser = null;
+
+function setAuthStatus(id, message) {
+ const el = document.getElementById(id);
+ if (el) el.textContent = message;
+}
+
+function authErrorMessage(error) {
+ const msg = String(error?.message || '').toLowerCase();
+
+ if (msg.includes('invalid login credentials'))
+  return 'ایمیل یا رمز عبور اشتباه است.';
+ if (msg.includes('email not confirmed'))
+  return 'ابتدا ایمیلت را تأیید کن.';
+ if (msg.includes('already registered'))
+  return 'این ایمیل قبلاً ثبت‌نام کرده است.';
+ if (msg.includes('password'))
+  return 'رمز عبور معتبر نیست؛ حداقل ۶ کاراکتر وارد کن.';
+ if (msg.includes('rate limit'))
+  return 'تعداد درخواست‌ها زیاد شده؛ کمی بعد دوباره تلاش کن.';
+
+ return error?.message || 'خطایی رخ داد. دوباره تلاش کن.';
+}
+
+function updateAuthUI(user) {
+ currentAuthUser = user || null;
+
+ const loginButton = document.getElementById('loginNavButton');
+ const accountButton = document.getElementById('accountNavButton');
+
+ if (loginButton) loginButton.style.display = user ? 'none' : 'inline-block';
+ if (accountButton) accountButton.style.display = user ? 'inline-block' : 'none';
+
+ const email = document.getElementById('dashboardEmail');
+ if (email) email.textContent = user ? 'ایمیل حساب: ' + user.email : '';
+}
+
+async function initAuth() {
+ try {
+  if (!window.supabase?.createClient) {
+   throw new Error('کتابخانه ورود بارگذاری نشد. اتصال اینترنت را بررسی کن.');
+  }
+
+  if (!SUPABASE_PUBLISHABLE_KEY.startsWith('sb_publishable_')) {
+   throw new Error('کلید عمومی Supabase هنوز در فایل سایت قرار نگرفته است.');
+  }
+
+  supabaseClient = window.supabase.createClient(
+   SUPABASE_URL,
+   SUPABASE_PUBLISHABLE_KEY
+  );
+
+  const { data, error } = await supabaseClient.auth.getSession();
+  if (error) throw error;
+
+  updateAuthUI(data.session?.user || null);
+
+  supabaseClient.auth.onAuthStateChange((_event, session) => {
+   updateAuthUI(session?.user || null);
+  });
+
+ } catch (error) {
+  console.error('NOVA Auth:', error);
+  setAuthStatus('loginStatus', authErrorMessage(error));
+  setAuthStatus('registerStatus', authErrorMessage(error));
+ }
+}
+
+document.getElementById('loginForm').addEventListener('submit', async event => {
+ event.preventDefault();
+
+ if (!supabaseClient) {
+  setAuthStatus('loginStatus', 'اتصال ورود آماده نیست؛ تنظیمات Supabase را بررسی کن.');
+  return;
+ }
+
+ const button = document.getElementById('loginButton');
+ button.disabled = true;
+ button.textContent = 'در حال ورود...';
+
+ try {
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value;
+
+  const { data, error } = await supabaseClient.auth.signInWithPassword({
+   email,
+   password
+  });
+
+  if (error) throw error;
+
+  updateAuthUI(data.user);
+  setAuthStatus('dashboardStatus', 'ورود با موفقیت انجام شد.');
+  showPage('dashboard');
+
+ } catch (error) {
+  setAuthStatus('loginStatus', authErrorMessage(error));
+ } finally {
+  button.disabled = false;
+  button.textContent = 'ورود';
+ }
+});
+
+document.getElementById('registerForm').addEventListener('submit', async event => {
+ event.preventDefault();
+
+ if (!supabaseClient) {
+  setAuthStatus('registerStatus', 'اتصال ثبت‌نام آماده نیست؛ تنظیمات Supabase را بررسی کن.');
+  return;
+ }
+
+ const button = document.getElementById('registerButton');
+ button.disabled = true;
+ button.textContent = 'در حال ثبت‌نام...';
+
+ try {
+  const username = document.getElementById('registerUsername').value.trim();
+  const email = document.getElementById('registerEmail').value.trim();
+  const password = document.getElementById('registerPassword').value;
+
+  const { data, error } = await supabaseClient.auth.signUp({
+   email,
+   password,
+   options: {
+    data: { username },
+    emailRedirectTo: window.location.origin + '/'
+   }
+  });
+
+  if (error) throw error;
+
+  if (data.session) {
+   updateAuthUI(data.user);
+   setAuthStatus('dashboardStatus', 'حساب با موفقیت ساخته شد.');
+   showPage('dashboard');
+  } else {
+   setAuthStatus(
+    'registerStatus',
+    'ثبت‌نام انجام شد. ایمیلت را بررسی کن و لینک تأیید را باز کن.'
+   );
+  }
+
+ } catch (error) {
+  setAuthStatus('registerStatus', authErrorMessage(error));
+ } finally {
+  button.disabled = false;
+  button.textContent = 'ثبت‌نام';
+ }
+});
+
+document.getElementById('logoutButton').addEventListener('click', async () => {
+ if (!supabaseClient) return;
+
+ const button = document.getElementById('logoutButton');
+ button.disabled = true;
+
+ try {
+  const { error } = await supabaseClient.auth.signOut();
+  if (error) throw error;
+
+  updateAuthUI(null);
+  showPage('home');
+
+ } catch (error) {
+  setAuthStatus('dashboardStatus', authErrorMessage(error));
+ } finally {
+  button.disabled = false;
+ }
+});
+
 
 const CURRENT_VERSION = "1.0.0";
 
@@ -582,6 +772,7 @@ navigator.serviceWorker?.addEventListener('controllerchange',()=>{
 document.addEventListener('DOMContentLoaded',()=>{
  loadReleases();
  registerNOVAServiceWorker();
+ initAuth();
 });
 </script>
 
