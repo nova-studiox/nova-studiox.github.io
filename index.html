@@ -1,780 +1,639 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0b0b0d">
-<meta name="description" content="NOVA STUDIO BOT MAKER - ربات ساز نوا">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="NOVA STUDIO">
-
-<link rel="manifest" href="./manifest.json">
-<link rel="icon" href="./icon-192.png" type="image/png">
-<link rel="apple-touch-icon" href="./icon-192.png">
-
-<title>NOVA STUDIO | ربات ساز نوا</title>
-
+<meta name="theme-color" content="#08090d">
+<title>NOVA STUDIO | پنل مدیریت</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap');
+:root{--gold:#f5bd45;--gold2:#ffe0a0;--bg:#08090d;--panel:#11131a;--line:#292a31;--muted:#92939e}
 *{box-sizing:border-box}
-:root{
- --gold:#d9ad52;
- --panel:#171719;
- --muted:#aaa;
+body{margin:0;background:var(--bg);color:#fff;font-family:Vazirmatn,Tahoma,sans-serif;min-height:100vh}
+button,input{font:inherit}
+button{cursor:pointer}
+.app{display:flex;min-height:100vh}
+.sidebar{width:255px;position:fixed;right:0;top:0;bottom:0;background:#0d0e13;border-left:1px solid var(--line);padding:25px 17px;z-index:5;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:12px;padding:5px 9px 28px}
+.logo{width:45px;height:45px;border-radius:15px;background:linear-gradient(145deg,#ffe2a0,#bd8421);color:#17110a;display:grid;place-items:center;font-size:25px;font-weight:900;box-shadow:0 0 25px #d99b3433}
+.brand h2{font-size:17px;margin:0;color:var(--gold2)}
+.brand small{font-size:9px;color:var(--muted);letter-spacing:3px}
+.nav-title{font-size:10px;color:#686a75;padding:14px 13px 8px}
+.nav button{width:100%;display:flex;align-items:center;gap:12px;background:transparent;border:0;color:#a8a9b2;padding:13px;border-radius:12px;text-align:right;margin:3px 0;transition:.2s}
+.nav button:hover,.nav button.active{background:linear-gradient(90deg,#211b10,#302414);color:var(--gold2)}
+.nav button.active{border:1px solid #75552255}
+.nav .ico{font-size:19px;width:25px;text-align:center}
+.side-bottom{margin-top:auto;border-top:1px solid var(--line);padding-top:17px}
+.profile{display:flex;align-items:center;gap:10px;padding:10px}
+.avatar{width:37px;height:37px;border-radius:50%;background:#282116;color:var(--gold);display:grid;place-items:center}
+.profile b{font-size:12px}.profile small{display:block;color:var(--muted);font-size:10px}
+.main{margin-right:255px;width:calc(100% - 255px);padding:28px 4%;max-width:1600px}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:30px}
+.top-title h1{font-size:21px;margin:0 0 5px}.top-title p{font-size:11px;color:var(--muted);margin:0}
+.top-actions{display:flex;gap:10px;align-items:center}
+.icon-btn{width:42px;height:42px;border:1px solid var(--line);background:var(--panel);color:white;border-radius:13px;font-size:17px}
+.menu-btn{display:none}
+.gold-btn{border:0;border-radius:12px;padding:12px 18px;background:linear-gradient(120deg,#ffe1a0,#d99c35);color:#201607;font-weight:800;box-shadow:0 5px 20px #d99c3520}
+.gold-btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.hero{position:relative;overflow:hidden;padding:32px;border:1px solid #8b682b77;border-radius:23px;background:radial-gradient(ellipse at 10% 20%,#59401e77,transparent 55%),linear-gradient(120deg,#211b13,#11131a 70%);min-height:210px;display:flex;align-items:center;justify-content:space-between}
+.hero:after{content:"Ⓝ";position:absolute;left:8%;top:-75px;font-size:250px;color:#f5bd450a;font-weight:900}
+.hero-content{position:relative;z-index:1}
+.eyebrow{color:var(--gold);font-size:11px;letter-spacing:2px}
+.hero h2{font-size:27px;margin:12px 0 8px}
+.hero p{font-size:12px;color:#c2c0b9;line-height:2;margin:0 0 19px}
+.hero-art{font-size:90px;filter:drop-shadow(0 0 30px #f5bd4544);margin-left:5%}
+.section-head{display:flex;justify-content:space-between;align-items:center;margin:29px 0 15px}
+.section-head h3{font-size:15px;margin:0}
+.section-head span{font-size:10px;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+.stat,.card,.panel{background:linear-gradient(145deg,#151720,#101117);border:1px solid var(--line);border-radius:17px}
+.stat{padding:17px;display:flex;align-items:center;gap:13px}
+.stat-icon{width:43px;height:43px;border-radius:13px;background:#2a2113;display:grid;place-items:center;font-size:20px}
+.stat small{color:var(--muted);font-size:10px}.stat strong{display:block;font-size:21px;margin-top:3px}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.card{padding:21px;position:relative;overflow:hidden;cursor:pointer;transition:.25s}
+.card:hover{transform:translateY(-4px);border-color:#a67b35;box-shadow:0 12px 35px #0006}
+.card-icon{font-size:29px;margin-bottom:14px}
+.card h3{font-size:14px;margin:0 0 6px}
+.card p{font-size:10px;color:var(--muted);margin:0;line-height:1.9}
+.arrow{position:absolute;left:18px;top:23px;color:var(--gold);font-size:19px}
+.panel{padding:20px;margin-top:20px}
+.panel-head{display:flex;justify-content:space-between;align-items:center}
+.panel-head h3{font-size:14px;margin:0}
+.empty{text-align:center;padding:28px 10px;color:var(--muted);font-size:12px;line-height:2}
+.empty div{font-size:35px;margin-bottom:10px}
+.page{display:none;animation:fade .25s}.page.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.toast{position:fixed;bottom:25px;left:25px;background:#1b1d24;border:1px solid #705526;color:white;padding:14px 20px;border-radius:13px;z-index:20;box-shadow:0 10px 35px #0008;font-size:12px;display:none}
+.modal-bg{position:fixed;inset:0;background:#000b;z-index:30;display:none;align-items:center;justify-content:center;padding:18px}
+.modal{width:100%;max-width:420px;background:#151720;border:1px solid #80602c;border-radius:20px;padding:24px;box-shadow:0 20px 80px #000}
+.modal h3{margin:0 0 18px;color:var(--gold2)}
+.modal input{width:100%;background:#090a0f;border:1px solid var(--line);padding:13px;border-radius:10px;color:white;outline:none;margin:8px 0 15px}
+.modal input:focus{border-color:var(--gold)}
+.modal-actions{display:flex;gap:10px}
+.secondary{background:#282a32;color:white;border:1px solid var(--line);padding:11px 17px;border-radius:11px}
+.mobile-nav{display:none}
+.bot-item{display:flex;align-items:center;justify-content:space-between;padding:14px;border-bottom:1px solid var(--line);font-size:12px}
+.tag{font-size:9px;padding:5px 9px;border-radius:20px;background:#242016;color:var(--gold)}
+@media(max-width:850px){.sidebar{width:220px}.main{margin-right:220px;width:calc(100% - 220px)}}
+@media(max-width:650px){
+.sidebar{transform:translateX(100%);width:270px;transition:.25s;box-shadow:-20px 0 60px #0008}
+.sidebar.open{transform:translateX(0)}
+.main{margin:0;width:100%;padding:19px 15px 90px}
+.menu-btn{display:block}
+.topbar{margin-bottom:20px}
+.top-title h1{font-size:17px}
+.top-title p{font-size:9px}
+.top-actions .gold-btn{display:none}
+.hero{padding:23px;min-height:190px}
+.hero h2{font-size:21px}
+.hero p{font-size:10px;max-width:260px}
+.hero-art{font-size:55px;margin-left:0}
+.stats{gap:8px}
+.stat{padding:12px 8px;gap:7px;flex-direction:column;align-items:flex-start}
+.stat-icon{width:33px;height:33px;font-size:16px}
+.stat strong{font-size:17px}
+.stat small{font-size:9px}
+.cards{gap:10px}
+.card{padding:16px}
+.card-icon{font-size:25px}
+.card h3{font-size:12px}
+.card p{font-size:9px}
+.mobile-nav{position:fixed;bottom:0;right:0;left:0;z-index:4;background:#101117f5;backdrop-filter:blur(15px);border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:9px 5px calc(9px + env(safe-area-inset-bottom))}
+.mobile-nav button{background:none;border:0;color:#999;font-size:10px;display:grid;gap:4px;justify-items:center}
+.mobile-nav button span{font-size:19px}
+.mobile-nav button.active{color:var(--gold)}
 }
-body{
- margin:0;
- background:#0b0b0d;
- color:#f5f5f5;
- font-family:Tahoma,Arial,sans-serif;
- line-height:1.9;
+
+/* NOVA LIGHT THEME */
+body.light {
+ --bg:#f3f5fa;
+ --panel:#ffffff;
+ --line:#dfe3ec;
+ --muted:#697386;
+ background:var(--bg);
+ color:#202637;
 }
-header{
- height:70px;
- padding:0 5%;
- display:flex;
- align-items:center;
- justify-content:space-between;
- border-bottom:1px solid #292929;
- position:sticky;
- top:0;
- background:#0b0b0df2;
- z-index:5;
+body.light .sidebar {
+ background:#ffffff;
+ border-color:var(--line);
 }
-.logo{display:flex;align-items:center;min-width:0}
-.logo img{width:155px;max-width:38vw;height:auto;display:block;object-fit:contain}
-nav{display:flex;gap:8px;align-items:center}
-button{
- cursor:pointer;
- border:0;
- border-radius:10px;
- padding:11px 15px;
- font-weight:bold;
- font-size:13px;
+body.light .top-title h1,
+body.light .brand h2,
+body.light .panel-head h3,
+body.light .section-head h3,
+body.light .stat strong,
+body.light .card h3 {
+ color:#202637;
 }
-button:disabled{opacity:.5;cursor:not-allowed}
-.primary{background:var(--gold);color:#17120a}
-.secondary{background:#252527;color:white;border:1px solid #383838}
-main{max-width:1050px;margin:auto;padding:35px 18px}
-.page{display:none}
-.page.active{display:block}
-.hero{text-align:center;padding:65px 12px 45px}
-.tag{
- display:inline-block;
- border:1px solid #725b2e;
- color:var(--gold);
- border-radius:30px;
- padding:5px 15px;
- font-size:12px;
+body.light .nav button {color:#586174}
+body.light .nav button:hover,
+body.light .nav button.active {
+ background:#fff3d9;
+ color:#805711;
 }
-h1{font-size:clamp(30px,6vw,54px);line-height:1.5;margin:18px 0 8px}
-.gold{color:var(--gold)}
-.desc{color:#bbb;max-width:620px;margin:12px auto 25px}
-.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.section-title{text-align:center;margin:35px 0 22px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
-.card{background:var(--panel);border:1px solid #29292d;border-radius:16px;padding:20px}
-.card h3{margin:0 0 8px;color:var(--gold)}
-.card p{margin:0;color:#bbb;font-size:14px}
-.create{
- margin:35px 0;
- background:linear-gradient(135deg,#292216,#171719 65%);
- border:1px solid #70572b;
- border-radius:18px;
- padding:28px;
- text-align:center;
+body.light .stat,
+body.light .card,
+body.light .panel {
+ background:#ffffff;
+ border-color:var(--line);
+ box-shadow:0 5px 20px #18233b0a;
 }
-.create h2{color:var(--gold);margin-top:0}
-input{
- width:100%;
- padding:14px;
- margin:8px 0;
- background:#101012;
- border:1px solid #383838;
- border-radius:10px;
- color:white;
- font-size:15px;
- outline:none;
+body.light .hero {
+ background:linear-gradient(120deg,#fff1d3,#ffffff 75%);
+ border-color:#e8d3a6;
 }
-input:focus{border-color:var(--gold)}
-.auth{max-width:430px;margin:35px auto}
-.auth .card{padding:25px}
-.auth h2{text-align:center;color:var(--gold)}
-.muted{color:var(--muted);font-size:13px}
-.link{color:var(--gold);cursor:pointer;text-decoration:underline}
-.notice{
- margin-top:15px;
- padding:12px;
- border:1px solid #66532d;
- border-radius:10px;
- color:#e5c77f;
- font-size:13px;
+body.light .hero h2 {color:#29251e}
+body.light .hero p {color:#62616a}
+body.light .icon-btn,
+body.light .secondary {
+ background:#ffffff;
+ color:#333b4d;
+ border-color:var(--line);
 }
-footer{
- text-align:center;
- color:#777;
- border-top:1px solid #292929;
- padding:25px;
- margin-top:45px;
- font-size:12px;
+body.light input {
+ background:#ffffff;
+ color:#202637;
+ border-color:var(--line);
 }
-.update-banner{
- display:none;
- background:#282116;
- border:1px solid #9a7637;
- border-radius:14px;
- padding:15px;
- margin:15px 0 25px;
+body.light .side-bottom {border-color:var(--line)}
+body.light .profile b {color:#202637}
+body.light .empty {color:#697386}
+.stats {grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:850px) {
+ .stats {grid-template-columns:repeat(2,minmax(0,1fr))}
 }
-.update-banner strong{color:var(--gold)}
-.update-banner p{margin:5px 0 12px;font-size:13px;color:#ddd}
-.update-actions{display:flex;gap:10px;flex-wrap:wrap}
-.release-head{
- display:flex;
- justify-content:space-between;
- align-items:center;
- flex-wrap:wrap;
- gap:12px;
+@media(max-width:420px) {
+ .stats {grid-template-columns:repeat(2,minmax(0,1fr))}
+ .top-actions {gap:6px}
+ .top-actions .icon-btn {width:38px;height:38px}
 }
-.version{color:var(--gold);font-size:25px;font-weight:bold}
-.release-date{color:#999;font-size:12px}
-.release-notes{padding:0 20px;color:#ddd;font-size:14px}
-.release-notes li{margin:7px 0}
-.release-card{margin:15px 0}
-.release-label{
- display:inline-block;
- background:#302719;
- color:var(--gold);
- padding:3px 10px;
- border-radius:20px;
- font-size:11px;
+
+
+/* NOVA DYNAMIC TAGS */
+.tags-hero{
+ padding:25px;border:1px solid #8b682b77;border-radius:20px;
+ background:radial-gradient(ellipse at 10% 20%,#59401e66,transparent 55%),linear-gradient(120deg,#211b13,#11131a 75%);
+ margin-bottom:20px
 }
-.download-link{
- display:inline-block;
- text-decoration:none;
- background:var(--gold);
- color:#17120a;
- padding:10px 18px;
- border-radius:10px;
- font-size:13px;
- font-weight:bold;
- margin-top:12px;
+.tags-hero h2{font-size:21px;margin:0 0 9px;color:var(--gold2)}
+.tags-hero p{font-size:11px;color:#c2c0b9;line-height:2;margin:0}
+.tags-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.tags-search{
+ flex:1;min-width:190px;background:var(--panel);border:1px solid var(--line);
+ border-radius:12px;padding:13px 15px;color:inherit;outline:none
 }
-.status-text{color:#aaa;font-size:13px;margin-top:12px}
-.empty{color:#999;text-align:center;padding:20px}
-@media(max-width:600px){
- header{padding:0 3%;height:62px}
- .logo{font-size:17px}
- nav{gap:5px}
- nav button{padding:8px 9px;font-size:11px}
- .hero{padding-top:42px}
- .release-head{display:block}
+.tags-search:focus{border-color:var(--gold)}
+.tag-filters{display:flex;gap:7px;flex-wrap:wrap}
+.tag-filter{
+ border:1px solid var(--line);background:var(--panel);color:var(--muted);
+ border-radius:10px;padding:9px 13px;font-size:10px
 }
+.tag-filter.active{background:#302414;border-color:#8b682b;color:var(--gold2)}
+.dynamic-tags{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.dynamic-tag{
+ background:linear-gradient(145deg,#151720,#101117);border:1px solid var(--line);
+ border-radius:16px;padding:17px;min-width:0;transition:.2s
+}
+.dynamic-tag:hover{border-color:#a67b35;transform:translateY(-2px)}
+.dynamic-tag-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.dynamic-tag h3{font-size:13px;margin:0}
+.dynamic-tag .tag-category{font-size:9px;color:var(--muted)}
+.tag-code{
+ direction:ltr;text-align:left;display:block;margin:13px 0 10px;padding:12px;
+ border:1px dashed #8b682b88;background:#0b0c11;border-radius:10px;
+ color:var(--gold2);font-family:monospace;font-size:15px;overflow-wrap:anywhere
+}
+.dynamic-tag p{font-size:10px;line-height:1.9;color:var(--muted);margin:0 0 12px}
+.tag-example{font-size:10px;line-height:1.9;color:#c8c4b9;background:#ffffff08;padding:9px;border-radius:9px;margin-bottom:12px}
+.tag-copy{width:100%;border:1px solid #8b682b88;border-radius:10px;padding:10px;background:#2b2113;color:var(--gold2);font-weight:700;font-size:11px}
+.tag-copy:active{transform:scale(.98)}
+.tags-note{font-size:10px;line-height:2;color:var(--muted);padding:13px 15px;border:1px solid var(--line);border-radius:12px;margin-top:17px}
+.tags-empty{display:none;text-align:center;padding:30px;color:var(--muted);font-size:12px}
+body.light .tags-hero{background:linear-gradient(120deg,#fff1d3,#fff 80%);border-color:#e8d3a6}
+body.light .tags-hero h2{color:#634713}
+body.light .tags-hero p{color:#62616a}
+body.light .dynamic-tag{background:#fff;border-color:var(--line)}
+body.light .tag-code{background:#f6f3ed;color:#76531b}
+body.light .tag-example{color:#52596a;background:#f4f5f8}
+body.light .tag-filter{background:#fff;color:#586174}
+body.light .tag-filter.active{background:#fff3d9;color:#805711}
+body.light .tags-note{color:#697386}
+@media(max-width:650px){
+ .dynamic-tags{grid-template-columns:1fr}
+ .tags-hero{padding:20px}
+ .tags-hero h2{font-size:18px}
+ .tag-filters{width:100%}
+ .tag-filter{flex:1}
+}
+
 </style>
 </head>
-
 <body>
-
-<header>
- <div class="logo"><img src="./assets/nova-studio-logo.jpg" alt="NOVA STUDIO"></div>
- <nav>
-  <button class="secondary" onclick="showPage('home')">خانه</button>
-  <button class="secondary" onclick="showPage('releases')">آپدیت‌ها</button>
-  <button class="primary" id="loginNavButton" onclick="showPage('login')">ورود</button>
-  <button class="primary" id="accountNavButton" style="display:none" onclick="showPage('dashboard')">حساب من</button>
- </nav>
+<div class="app">
+<aside class="sidebar" id="sidebar">
+<div class="brand"><div class="logo">Ⓝ</div><div><h2>NOVA STUDIO</h2><small>BOT BUILDER</small></div></div>
+<div class="nav-title">فضای کاری</div>
+<nav class="nav">
+<button class="active" data-page="home"><span class="ico">⌂</span>داشبورد</button>
+<button data-page="bots"><span class="ico">🤖</span>ربات‌های من</button>
+<button data-page="settings"><span class="ico">⚙️</span>تنظیمات</button>
+<button data-page="tools"><span class="ico">🧰</span>ابزارها</button>
+<button data-page="tags"><span class="ico">🏷️</span>تگ‌های پویا</button>
+<button data-page="vip"><span class="ico">💎</span>اشتراک VIP</button>
+</nav>
+<div class="nav-title">حساب کاربری</div>
+<nav class="nav"><button data-page="account"><span class="ico">♙</span>حساب من</button></nav>
+<div class="side-bottom"><div class="profile"><div class="avatar">Ⓝ</div><div><b>کاربر NOVA</b><small>حساب آزمایشی</small></div></div></div>
+</aside>
+<main class="main">
+<header class="topbar">
+<div style="display:flex;align-items:center;gap:12px">
+<button class="icon-btn menu-btn" onclick="toggleMenu()">☰</button>
+<div class="top-title"><h1 id="pageTitle">داشبورد</h1><p>به فضای هوشمند ساخت ربات خوش آمدید</p></div>
+</div>
+<div class="top-actions">
+<button class="icon-btn" onclick="notify('فعلاً اعلان جدیدی ندارید 🔔')">♧</button>
+<button class="icon-btn" id="themeBtn" onclick="toggleTheme()" title="تغییر حالت روشنایی">🌙</button>
+<button class="secondary update-btn" id="updateBtn" onclick="checkUpdate()">↻ آپدیت</button>
+<button class="gold-btn" onclick="openAdd()">＋ ساخت ربات جدید</button>
+</div>
 </header>
 
-<main>
-
-<div id="updateBanner" class="update-banner">
- <strong id="updateTitle">آپدیت جدید نوا!</strong>
- <p id="updateMessage">یک نسخه جدید آماده دریافت است.</p>
- <div class="update-actions">
-  <button id="updateNowButton" class="primary" style="display:none">
-   تأیید و به‌روزرسانی
-  </button>
-  <button class="secondary" onclick="showPage('releases')">
-   مشاهده آپدیت‌ها
-  </button>
- </div>
+<section class="page active" id="home">
+<div class="hero">
+<div class="hero-content">
+<div class="eyebrow">✦ YOUR IDEAS, OUR TECHNOLOGY</div>
+<h2>قدرت ساخت، در دستان توست!</h2>
+<p>با NOVA STUDIO ربات خودت رو بساز، مدیریت کن و امکاناتش رو گسترش بده.</p>
+<button class="gold-btn" onclick="openAdd()">شروع ساخت ربات ←</button>
+</div><div class="hero-art">👑</div>
 </div>
-
-<section id="home" class="page active">
- <div class="hero">
-  <span class="tag">NOVA STUDIO BOT MAKER</span>
-  <h1>ربات ساز <span class="gold">نوا</span></h1>
-  <p class="desc">
-   ربات روبیکای خودت رو بساز، امکاناتش رو انتخاب کن
-   و از یک پنل اختصاصی مدیریتش کن.
-  </p>
-  <div class="actions">
-   <button class="primary" onclick="showPage('register')">شروع ساخت ربات</button>
-   <button class="secondary" onclick="showPage('login')">ورود به حساب</button>
-   <button class="secondary" onclick="showPage('releases')">مشاهده نسخه‌ها</button>
-  </div>
- </div>
-
- <h2 class="section-title">امکانات نوا</h2>
- <div class="grid">
-  <div class="card">
-   <h3>🛡️ مدیریت گروه</h3>
-   <p>ابزارهای مدیریتی برای کنترل و نظم گروه روبیکا.</p>
-  </div>
-  <div class="card">
-   <h3>🔒 امنیت گروه</h3>
-   <p>امکانات ضد لینک، ضد اسپم و سیستم هشدار.</p>
-  </div>
-  <div class="card">
-   <h3>🎮 سرگرمی</h3>
-   <p>بازی‌ها و سرگرمی‌های متنوع برای اعضای گروه.</p>
-  </div>
-  <div class="card">
-   <h3>📊 آمار و تنظیمات</h3>
-   <p>مشاهده آمار و مدیریت تنظیمات ربات.</p>
-  </div>
- </div>
-
- <div class="create">
-  <h2>آماده ساخت ربات خودت هستی؟</h2>
-  <p class="muted">برای شروع، وارد حساب کاربری شو یا یک حساب جدید بساز.</p>
-  <button class="primary" onclick="showPage('register')">ساخت ربات</button>
- </div>
+<div class="stats">
+<div class="stat"><div class="stat-icon">👥</div><div><small>سازندگان ثبت‌شده</small><strong id="globalUsers">۰</strong></div></div>
+<div class="stat"><div class="stat-icon">🤖</div><div><small>کل ربات‌های ساخته‌شده</small><strong id="globalBots">۰</strong></div></div>
+<div class="stat"><div class="stat-icon">⚡</div><div><small>ربات‌های فعال</small><strong id="globalActiveBots">۰</strong></div></div>
+<div class="stat"><div class="stat-icon">💬</div><div><small>گروه‌های فعال</small><strong id="globalGroups">۰</strong></div></div>
+</div>
+<div class="section-head"><h3>دسترسی سریع</h3><span>QUICK ACCESS</span></div>
+<div class="cards">
+<div class="card" onclick="go('bots')"><span class="arrow">←</span><div class="card-icon">🤖</div><h3>ربات‌های من</h3><p>مشاهده و مدیریت ربات‌های ساخته‌شده</p></div>
+<div class="card" onclick="go('settings')"><span class="arrow">←</span><div class="card-icon">⚙️</div><h3>تنظیمات ربات</h3><p>شخصی‌سازی و مدیریت تنظیمات</p></div>
+<div class="card" onclick="go('tools')"><span class="arrow">←</span><div class="card-icon">🧰</div><h3>ابزارهای کاربردی</h3><p>ابزارهای مورد نیاز برای ساخت ربات</p></div>
+<div class="card" onclick="go('vip')"><span class="arrow">←</span><div class="card-icon">💎</div><h3>اشتراک VIP</h3><p>امکانات ویژه و حرفه‌ای NOVA</p></div>
+</div>
+<div class="panel"><div class="panel-head"><h3>آخرین فعالیت‌ها</h3><span class="tag">LIVE</span></div><div class="empty"><div>✦</div>هنوز فعالیتی ثبت نشده است.</div></div>
 </section>
 
-<section id="releases" class="page">
- <div class="hero">
-  <span class="tag">NOVA STUDIO RELEASE CENTER</span>
-  <h1>انتشار <span class="gold">نسخه‌ها</span></h1>
-  <p class="desc">
-   آخرین تغییرات، امکانات جدید و نسخه‌های منتشرشده
-   نوا را از این قسمت دنبال کن.
-  </p>
+<section class="page" id="bots">
+<div class="panel">
+<div class="panel-head"><h3>ربات‌های من</h3><button class="gold-btn" onclick="openAdd()">＋ افزودن ربات</button></div>
+<div id="botList" class="empty"><div>🤖</div>هنوز رباتی اضافه نکردی.<br>اولین ربات آزمایشی خودت رو بساز!</div>
+</div>
+</section>
+
+<section class="page" id="settings">
+<div class="panel"><h3>⚙️ تنظیمات محیط کاربری</h3>
+<div class="bot-item"><span>اعلان‌های پنل</span><button class="secondary" onclick="notify('تنظیم اعلان‌ها در نسخه آزمایشی')">مدیریت</button></div>
+<div class="bot-item"><span>زبان پنل</span><span class="tag">فارسی</span></div>
+<div class="bot-item"><span>حالت نمایش</span><span class="tag">مشکی و طلایی</span></div>
+<div class="bot-item"><span>نسخه پنل</span><span class="tag">1.1.0 WEB</span></div>
+</div>
+</section>
+
+<section class="page" id="tools">
+<div class="section-head"><h3>ابزارهای NOVA</h3><span>TOOLS</span></div>
+<div class="cards">
+<div class="card" onclick="notify('ابزار بررسی توکن به‌زودی متصل می‌شود')"><div class="card-icon">🔐</div><h3>بررسی اتصال</h3><p>بررسی وضعیت اتصال ربات</p></div>
+<div class="card" onclick="notify('راهنمای ساخت ربات به‌زودی تکمیل می‌شود')"><div class="card-icon">📚</div><h3>آموزش ساخت</h3><p>راهنمای شروع و راه‌اندازی</p></div>
+<div class="card" onclick="notify('بخش پشتیبانی به‌زودی فعال می‌شود')"><div class="card-icon">💬</div><h3>پشتیبانی</h3><p>ارتباط با تیم پشتیبانی</p></div>
+<div class="card" onclick="notify('این قابلیت در نسخه بعدی اضافه می‌شود')"><div class="card-icon">📊</div><h3>گزارش‌ها</h3><p>گزارش عملکرد ربات‌ها</p></div>
+</div>
+</section>
+
+<section class="page" id="vip">
+<div class="hero"><div class="hero-content"><div class="eyebrow">NOVA PREMIUM</div><h2>یک قدم جلوتر از بقیه باش!</h2><p>امکانات حرفه‌ای برای مدیریت بهتر ربات‌ها.</p><button class="gold-btn" onclick="notify('خرید اشتراک هنوز به درگاه متصل نشده است')">مشاهده شرایط اشتراک</button></div><div class="hero-art">💎</div></div>
+<div class="panel"><h3>امکانات VIP</h3><div class="bot-item">امکانات پیشرفته <span class="tag">VIP</span></div><div class="bot-item">مدیریت حرفه‌ای <span class="tag">VIP</span></div><div class="bot-item">پشتیبانی ویژه <span class="tag">VIP</span></div></div>
+</section>
+
+<section class="page" id="account">
+<div class="panel"><h3>حساب کاربری</h3><div class="profile"><div class="avatar">Ⓝ</div><div><b>کاربر NOVA</b><small>حساب آزمایشی نسخه وب</small></div></div><div class="bot-item">نوع حساب <span class="tag">رایگان</span></div><div class="bot-item">وضعیت <span class="tag">آزمایشی</span></div></div>
+</section>
+
+<section class="page" id="tags">
+ <div class="tags-hero">
+  <div class="eyebrow">✦ NOVA DYNAMIC TAGS</div>
+  <h2>کتابخانه تگ‌های پویا</h2>
+  <p>تگ موردنظرت رو پیدا کن، کاربردش رو ببین و با یک لمس کپی کن.</p>
  </div>
 
- <div class="card release-card">
-  <div class="release-head">
-   <div>
-    <span class="release-label">آخرین نسخه</span>
-    <h2 class="version" id="latestVersion">در حال دریافت...</h2>
-    <div class="release-date" id="latestDate"></div>
-   </div>
-   <span class="tag" id="platformLabel">NOVA STUDIO</span>
+ <div class="panel" style="margin-top:0">
+  <div class="panel-head">
+   <h3>🏷️ همه تگ‌ها</h3>
+   <span class="tag" id="tagCount">۸ تگ</span>
+  </div>
+  <div class="tags-toolbar">
+   <input class="tags-search" id="tagSearch" type="search"
+    placeholder="جست‌وجوی نام یا کد تگ..." oninput="filterTags()">
+  </div>
+  <div class="tag-filters">
+   <button class="tag-filter active" data-filter="all" onclick="setTagCategory('all')">همه</button>
+   <button class="tag-filter" data-filter="user" onclick="setTagCategory('user')">👤 کاربر</button>
+   <button class="tag-filter" data-filter="group" onclick="setTagCategory('group')">👥 گروه</button>
+   <button class="tag-filter" data-filter="time" onclick="setTagCategory('time')">🕒 زمان</button>
+   <button class="tag-filter" data-filter="manage" onclick="setTagCategory('manage')">🛡️ مدیریت</button>
   </div>
 
-  <h3>تغییرات این نسخه</h3>
-  <ul class="release-notes" id="latestNotes">
-   <li>در حال بارگذاری اطلاعات...</li>
-  </ul>
+  <div class="dynamic-tags" id="dynamicTags">
+   <article class="dynamic-tag" data-category="user" data-search="username نام کاربری آیدی">
+    <div class="dynamic-tag-top"><h3>نام کاربری</h3><span class="tag-category">👤 کاربر</span></div>
+    <code class="tag-code">{username}</code>
+    <p>نام کاربری فردی که پیام را ارسال کرده است.</p>
+    <div class="tag-example">مثال: سلام {username}!</div>
+    <button class="tag-copy" onclick="copyTag('{username}')">کپی کردن</button>
+   </article>
 
-  <a id="downloadButton" class="download-link" href="./">دریافت نسخه</a>
-  <p class="status-text" id="releaseStatus">در حال بررسی نسخه‌ها...</p>
- </div>
+   <article class="dynamic-tag" data-category="user" data-search="name نام اسم نمایش">
+    <div class="dynamic-tag-top"><h3>نام نمایشی</h3><span class="tag-category">👤 کاربر</span></div>
+    <code class="tag-code">{name}</code>
+    <p>نام نمایشی کاربر در پیام پاسخ.</p>
+    <div class="tag-example">مثال: خوش اومدی {name} عزیز!</div>
+    <button class="tag-copy" onclick="copyTag('{name}')">کپی کردن</button>
+   </article>
 
- <h2 class="section-title">تاریخچه انتشار</h2>
- <div id="releaseHistory">
-  <div class="card empty">در حال دریافت تاریخچه نسخه‌ها...</div>
+   <article class="dynamic-tag" data-category="group" data-search="users تعداد کاربران اعضا">
+    <div class="dynamic-tag-top"><h3>تعداد کاربران</h3><span class="tag-category">👥 گروه</span></div>
+    <code class="tag-code">{users}</code>
+    <p>نمایش تعداد کاربران ثبت‌شده یا اعضا، طبق اطلاعاتی که موتور ربات فراهم می‌کند.</p>
+    <div class="tag-example">مثال: تعداد کاربران: {users}</div>
+    <button class="tag-copy" onclick="copyTag('{users}')">کپی کردن</button>
+   </article>
+
+   <article class="dynamic-tag" data-category="group" data-search="groups تعداد گروه">
+    <div class="dynamic-tag-top"><h3>تعداد گروه‌ها</h3><span class="tag-category">👥 گروه</span></div>
+    <code class="tag-code">{groups}</code>
+    <p>نمایش تعداد گروه‌های ثبت‌شده در سیستم ربات‌ساز.</p>
+    <div class="tag-example">مثال: گروه‌های فعال: {groups}</div>
+    <button class="tag-copy" onclick="copyTag('{groups}')">کپی کردن</button>
+   </article>
+
+   <article class="dynamic-tag" data-category="time" data-search="date تاریخ روز">
+    <div class="dynamic-tag-top"><h3>تاریخ امروز</h3><span class="tag-category">🕒 زمان</span></div>
+    <code class="tag-code">{date}</code>
+    <p>نمایش تاریخ روز در زمان اجرای پاسخ.</p>
+    <div class="tag-example">مثال: تاریخ امروز: {date}</div>
+    <button class="tag-copy" onclick="copyTag('{date}')">کپی کردن</button>
+   </article>
+
+   <article class="dynamic-tag" data-category="time" data-search="time ساعت زمان">
+    <div class="dynamic-tag-top"><h3>ساعت فعلی</h3><span class="tag-category">🕒 زمان</span></div>
+    <code class="tag-code">{time}</code>
+    <p>نمایش ساعت در زمان اجرای پاسخ.</p>
+    <div class="tag-example">مثال: ساعت ارسال: {time}</div>
+    <button class="tag-copy" onclick="copyTag('{time}')">کپی کردن</button>
+   </article>
+
+   <article class="dynamic-tag" data-category="manage" data-search="rank رتبه مقام">
+    <div class="dynamic-tag-top"><h3>رتبه کاربر</h3><span class="tag-category">🛡️ مدیریت</span></div>
+    <code class="tag-code">{rank}</code>
+    <p>نمایش رتبه یا جایگاه کاربر، در صورت پشتیبانی موتور ربات.</p>
+    <div class="tag-example">مثال: رتبه شما: {rank}</div>
+    <button class="tag-copy" onclick="copyTag('{rank}')">کپی کردن</button>
+   </article>
+
+   <article class="dynamic-tag" data-category="manage" data-search="duration مدت زمان سکوت">
+    <div class="dynamic-tag-top"><h3>مدت زمان</h3><span class="tag-category">🛡️ مدیریت</span></div>
+    <code class="tag-code">{duration}</code>
+    <p>نمایش مدت زمان یک محدودیت یا سکوت؛ فقط در پاسخ‌های مرتبط.</p>
+    <div class="tag-example">مثال: مدت محدودیت: {duration} دقیقه</div>
+    <button class="tag-copy" onclick="copyTag('{duration}')">کپی کردن</button>
+   </article>
+  </div>
+  <div class="tags-empty" id="tagsEmpty">تگی با این جست‌وجو پیدا نشد.</div>
+  <div class="tags-note">
+   <b>نکته مهم:</b> کپی‌کردن تگ، فقط متن آن را کپی می‌کند.
+   جایگزینی خودکار تگ‌ها با اطلاعات واقعی، به پشتیبانی موتور ربات و محل استفاده بستگی دارد.
+   این صفحه فعلاً مرجع تگ‌هاست و تگ‌های پشتیبانی‌نشده نباید به‌عنوان قابلیت فعال معرفی شوند.
+  </div>
  </div>
 </section>
-
-
-<section id="login" class="page auth">
- <div class="card">
-  <h2>ورود به نوا</h2>
-  <p class="muted">برای ورود به حساب کاربری</p>
-  <form id="loginForm">
-   <input id="loginEmail" type="email" placeholder="ایمیل" autocomplete="email" required>
-   <input id="loginPassword" type="password" placeholder="رمز عبور" autocomplete="current-password" required>
-   <button class="primary" style="width:100%" id="loginButton">ورود</button>
-  </form>
-  <p class="muted">
-   حساب نداری؟
-   <span class="link" onclick="showPage('register')">ثبت‌نام کن</span>
-  </p>
-  <div class="notice" id="loginStatus">اطلاعات حساب خود را وارد کن.</div>
- </div>
-</section>
-
-<section id="register" class="page auth">
- <div class="card">
-  <h2>ساخت حساب کاربری</h2>
-  <p class="muted">برای استفاده از ربات‌ساز نوا</p>
-  <form id="registerForm">
-   <input id="registerUsername" type="text" placeholder="نام کاربری" autocomplete="username" required>
-   <input id="registerEmail" type="email" placeholder="ایمیل" autocomplete="email" required>
-   <input id="registerPassword" type="password" placeholder="رمز عبور (حداقل ۶ کاراکتر)" minlength="6" autocomplete="new-password" required>
-   <button class="primary" style="width:100%" id="registerButton">ثبت‌نام</button>
-  </form>
-  <p class="muted">
-   قبلاً حساب ساخته‌ای؟
-   <span class="link" onclick="showPage('login')">وارد شو</span>
-  </p>
-  <div class="notice" id="registerStatus">برای ساخت حساب، اطلاعات را وارد کن.</div>
- </div>
-</section>
-
-<section id="dashboard" class="page auth">
- <div class="card">
-  <h2>حساب کاربری نوا</h2>
-  <p class="muted">با موفقیت وارد حساب شده‌ای.</p>
-  <p id="dashboardEmail"></p>
-  <button class="primary" id="logoutButton" style="width:100%">خروج از حساب</button>
-  <div class="notice" id="dashboardStatus">حساب کاربری فعال است.</div>
- </div>
-</section>
-
 
 </main>
+</div>
 
-<footer>
- NOVA STUDIO BOT MAKER · ربات ساز نوا
-</footer>
+<nav class="mobile-nav">
+<button class="active" data-page="home"><span>⌂</span>خانه</button>
+<button data-page="bots"><span>🤖</span>ربات‌ها</button>
+<button data-page="tools"><span>🧰</span>ابزارها</button>
+<button data-page="tags"><span>🏷️</span>تگ‌ها</button>
+<button data-page="account"><span>♙</span>حساب</button>
+</nav>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<div class="toast" id="toast"></div>
+<div class="modal-bg" id="modalBg" onclick="if(event.target===this)closeModal()">
+<div class="modal">
+<h3>＋ افزودن ربات آزمایشی</h3>
+<label>نام ربات</label>
+<input id="botName" placeholder="مثلاً NOVA GUARD">
+<label>شناسه یا آیدی نمایشی</label>
+<input id="botUser" placeholder="@MyBot">
+<div class="modal-actions"><button class="gold-btn" onclick="addBot()">ذخیره ربات</button><button class="secondary" onclick="closeModal()">انصراف</button></div>
+</div>
+</div>
+
 <script>
-'use strict';
+const titles={home:'داشبورد',bots:'ربات‌های من',settings:'تنظیمات',tools:'ابزارها',tags:'تگ‌های پویا',vip:'اشتراک VIP',account:'حساب کاربری'};
+let toastTimer;
+function notify(message){
+const t=document.getElementById('toast');t.textContent=message;t.style.display='block';
+clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.style.display='none',2800);
+}
+function go(page){
+document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+document.getElementById(page).classList.add('active');
+document.querySelectorAll('[data-page]').forEach(x=>x.classList.toggle('active',x.dataset.page===page));
+document.getElementById('pageTitle').textContent=titles[page]||'NOVA';
+document.getElementById('sidebar').classList.remove('open');
+window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.page)));
+function toggleMenu(){document.getElementById('sidebar').classList.toggle('open')}
+function openAdd(){document.getElementById('modalBg').style.display='flex';document.getElementById('botName').focus()}
+function closeModal(){document.getElementById('modalBg').style.display='none'}
+function getBots(){try{return JSON.parse(localStorage.getItem('nova_demo_bots')||'[]')}catch(e){return []}}
+function saveBots(bots){localStorage.setItem('nova_demo_bots',JSON.stringify(bots))}
+function addBot(){
+const name=document.getElementById('botName').value.trim();
+const user=document.getElementById('botUser').value.trim();
+if(!name){notify('لطفاً نام ربات را وارد کن');return}
+const bots=getBots();bots.push({name,user:user||'بدون آیدی'});
+saveBots(bots);document.getElementById('botName').value='';document.getElementById('botUser').value='';
+closeModal();renderBots();notify('ربات آزمایشی اضافه شد ✓');go('bots');
+}
+function removeBot(index){
+const bots=getBots();bots.splice(index,1);saveBots(bots);renderBots();notify('ربات حذف شد');
+}
+function renderBots(){
+const bots=getBots();document.getElementById('botCount').textContent=new Intl.NumberFormat('fa-IR').format(bots.length);
+const list=document.getElementById('botList');
+if(!bots.length){list.className='empty';list.innerHTML='<div>🤖</div>هنوز رباتی اضافه نکردی.<br>اولین ربات آزمایشی خودت رو بساز!';return}
+list.className='';
+list.innerHTML=bots.map((b,i)=>`<div class="bot-item"><span>🤖 ${escapeText(b.name)} <small style="color:#888">${escapeText(b.user)}</small></span><button class="secondary" onclick="removeBot(${i})">حذف</button></div>`).join('');
+}
+function escapeText(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 
 
-const SUPABASE_URL = 'https://chkjhfatplpbdxumjzec.supabase.co';
-const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_IbnPcp59UqIwQ-_imvvaYA_3iE68Jpd';
+let activeTagCategory = 'all';
 
-let supabaseClient = null;
-let currentAuthUser = null;
-
-function setAuthStatus(id, message) {
- const el = document.getElementById(id);
- if (el) el.textContent = message;
+function setTagCategory(category) {
+ activeTagCategory = category;
+ document.querySelectorAll('.tag-filter').forEach(btn => {
+  btn.classList.toggle('active', btn.dataset.filter === category);
+ });
+ filterTags();
 }
 
-function authErrorMessage(error) {
- const msg = String(error?.message || '').toLowerCase();
+function filterTags() {
+ const query = (document.getElementById('tagSearch')?.value || '').trim().toLowerCase();
+ const cards = [...document.querySelectorAll('.dynamic-tag')];
+ let visible = 0;
 
- if (msg.includes('invalid login credentials'))
-  return 'ایمیل یا رمز عبور اشتباه است.';
- if (msg.includes('email not confirmed'))
-  return 'ابتدا ایمیلت را تأیید کن.';
- if (msg.includes('already registered'))
-  return 'این ایمیل قبلاً ثبت‌نام کرده است.';
- if (msg.includes('password'))
-  return 'رمز عبور معتبر نیست؛ حداقل ۶ کاراکتر وارد کن.';
- if (msg.includes('rate limit'))
-  return 'تعداد درخواست‌ها زیاد شده؛ کمی بعد دوباره تلاش کن.';
-
- return error?.message || 'خطایی رخ داد. دوباره تلاش کن.';
-}
-
-function updateAuthUI(user) {
- currentAuthUser = user || null;
-
- const loginButton = document.getElementById('loginNavButton');
- const accountButton = document.getElementById('accountNavButton');
-
- if (loginButton) loginButton.style.display = user ? 'none' : 'inline-block';
- if (accountButton) accountButton.style.display = user ? 'inline-block' : 'none';
-
- const email = document.getElementById('dashboardEmail');
- if (email) email.textContent = user ? 'ایمیل حساب: ' + user.email : '';
-}
-
-async function initAuth() {
- try {
-  if (!window.supabase?.createClient) {
-   throw new Error('کتابخانه ورود بارگذاری نشد. اتصال اینترنت را بررسی کن.');
-  }
-
-  if (!SUPABASE_PUBLISHABLE_KEY.startsWith('sb_publishable_')) {
-   throw new Error('کلید عمومی Supabase هنوز در فایل سایت قرار نگرفته است.');
-  }
-
-  supabaseClient = window.supabase.createClient(
-   SUPABASE_URL,
-   SUPABASE_PUBLISHABLE_KEY
-  );
-
-  const { data, error } = await supabaseClient.auth.getSession();
-  if (error) throw error;
-
-  updateAuthUI(data.session?.user || null);
-
-  supabaseClient.auth.onAuthStateChange((_event, session) => {
-   updateAuthUI(session?.user || null);
-  });
-
- } catch (error) {
-  console.error('NOVA Auth:', error);
-  setAuthStatus('loginStatus', authErrorMessage(error));
-  setAuthStatus('registerStatus', authErrorMessage(error));
- }
-}
-
-document.getElementById('loginForm').addEventListener('submit', async event => {
- event.preventDefault();
-
- if (!supabaseClient) {
-  setAuthStatus('loginStatus', 'اتصال ورود آماده نیست؛ تنظیمات Supabase را بررسی کن.');
-  return;
- }
-
- const button = document.getElementById('loginButton');
- button.disabled = true;
- button.textContent = 'در حال ورود...';
-
- try {
-  const email = document.getElementById('loginEmail').value.trim();
-  const password = document.getElementById('loginPassword').value;
-
-  const { data, error } = await supabaseClient.auth.signInWithPassword({
-   email,
-   password
-  });
-
-  if (error) throw error;
-
-  updateAuthUI(data.user);
-  setAuthStatus('dashboardStatus', 'ورود با موفقیت انجام شد.');
-  showPage('dashboard');
-
- } catch (error) {
-  setAuthStatus('loginStatus', authErrorMessage(error));
- } finally {
-  button.disabled = false;
-  button.textContent = 'ورود';
- }
-});
-
-document.getElementById('registerForm').addEventListener('submit', async event => {
- event.preventDefault();
-
- if (!supabaseClient) {
-  setAuthStatus('registerStatus', 'اتصال ثبت‌نام آماده نیست؛ تنظیمات Supabase را بررسی کن.');
-  return;
- }
-
- const button = document.getElementById('registerButton');
- button.disabled = true;
- button.textContent = 'در حال ثبت‌نام...';
-
- try {
-  const username = document.getElementById('registerUsername').value.trim();
-  const email = document.getElementById('registerEmail').value.trim();
-  const password = document.getElementById('registerPassword').value;
-
-  const { data, error } = await supabaseClient.auth.signUp({
-   email,
-   password,
-   options: {
-    data: { username },
-    emailRedirectTo: window.location.origin + '/'
-   }
-  });
-
-  if (error) throw error;
-
-  if (data.session) {
-   updateAuthUI(data.user);
-   setAuthStatus('dashboardStatus', 'حساب با موفقیت ساخته شد.');
-   showPage('dashboard');
-  } else {
-   setAuthStatus(
-    'registerStatus',
-    'ثبت‌نام انجام شد. ایمیلت را بررسی کن و لینک تأیید را باز کن.'
-   );
-  }
-
- } catch (error) {
-  setAuthStatus('registerStatus', authErrorMessage(error));
- } finally {
-  button.disabled = false;
-  button.textContent = 'ثبت‌نام';
- }
-});
-
-document.getElementById('logoutButton').addEventListener('click', async () => {
- if (!supabaseClient) return;
-
- const button = document.getElementById('logoutButton');
- button.disabled = true;
-
- try {
-  const { error } = await supabaseClient.auth.signOut();
-  if (error) throw error;
-
-  updateAuthUI(null);
-  showPage('home');
-
- } catch (error) {
-  setAuthStatus('dashboardStatus', authErrorMessage(error));
- } finally {
-  button.disabled = false;
- }
-});
-
-
-const CURRENT_VERSION = "1.0.0";
-
-let swRegistration = null;
-let waitingWorker = null;
-let isReloading = false;
-
-function showPage(id){
- document.querySelectorAll('.page').forEach(page=>{
-  page.classList.remove('active');
+ cards.forEach(card => {
+  const matchesCategory = activeTagCategory === 'all' || card.dataset.category === activeTagCategory;
+  const haystack = (card.innerText + ' ' + (card.dataset.search || '')).toLowerCase();
+  const matchesSearch = !query || haystack.includes(query);
+  const show = matchesCategory && matchesSearch;
+  card.style.display = show ? '' : 'none';
+  if (show) visible++;
  });
 
- const page=document.getElementById(id);
- if(page) page.classList.add('active');
-
- window.scrollTo({top:0,behavior:'smooth'});
+ document.getElementById('tagCount').textContent =
+  new Intl.NumberFormat('fa-IR').format(visible) + ' تگ';
+ document.getElementById('tagsEmpty').style.display = visible ? 'none' : 'block';
 }
 
-function demoMessage(event){
- event.preventDefault();
- alert('این بخش هنوز به سرور ورود و ثبت‌نام متصل نشده است.');
-}
-
-function compareVersions(a,b){
- const x=String(a).split('.').map(Number);
- const y=String(b).split('.').map(Number);
-
- for(let i=0;i<Math.max(x.length,y.length);i++){
-  const n=x[i]||0;
-  const m=y[i]||0;
-  if(n>m)return 1;
-  if(n<m)return -1;
- }
- return 0;
-}
-
-function escapeHTML(value){
- return String(value).replace(/[&<>"']/g,char=>({
-  '&':'&amp;',
-  '<':'&lt;',
-  '>':'&gt;',
-  '"':'&quot;',
-  "'":'&#39;'
- })[char]);
-}
-
-function makeNotes(list){
- if(!Array.isArray(list)||list.length===0){
-  return '<li>توضیحات این نسخه ثبت نشده است.</li>';
- }
-
- return list.map(item=>'<li>'+escapeHTML(item)+'</li>').join('');
-}
-
-function safeURL(value){
- if(!value)return null;
-
- try{
-  const url=new URL(value,window.location.href);
-
-  if(url.protocol==='https:'||url.protocol==='http:'){
-   return url.href;
+async function copyTag(value) {
+ try {
+  if (navigator.clipboard && window.isSecureContext) {
+   await navigator.clipboard.writeText(value);
+  } else {
+   const area = document.createElement('textarea');
+   area.value = value;
+   area.style.position = 'fixed';
+   area.style.opacity = '0';
+   document.body.appendChild(area);
+   area.select();
+   const copied = document.execCommand('copy');
+   area.remove();
+   if (!copied) throw new Error('clipboard unavailable');
   }
-
-  return null;
- }catch(error){
-  return null;
+  notify('تگ ' + value + ' کپی شد ✓');
+ } catch (error) {
+  notify('کپی خودکار در این مرورگر در دسترس نیست');
  }
 }
 
-function showUpdateBanner(title,message){
- const banner=document.getElementById('updateBanner');
+const NOVA_VERSION = '1.1.0';
 
- banner.style.display='block';
- document.getElementById('updateTitle').textContent=title;
- document.getElementById('updateMessage').textContent=message;
-}
-
-function showWaitingUpdate(worker){
- if(!worker)return;
-
- waitingWorker=worker;
-
- showUpdateBanner(
-  'آپدیت جدید نوا آماده است!',
-  'برای دریافت نسخه جدید، دکمه تأیید و به‌روزرسانی را بزن.'
- );
-
- const button=document.getElementById('updateNowButton');
- button.style.display='inline-block';
- button.disabled=false;
- button.textContent='تأیید و به‌روزرسانی';
-}
-
-function applyUpdate(){
- if(!waitingWorker)return;
-
- const button=document.getElementById('updateNowButton');
-
- button.disabled=true;
- button.textContent='در حال به‌روزرسانی...';
-
- waitingWorker.postMessage('NOVA_SKIP_WAITING');
-}
-
-async function registerNOVAServiceWorker(){
- if(!('serviceWorker' in navigator))return;
-
- if(location.protocol!=='https:'&&location.hostname!=='localhost'){
-  return;
- }
-
- try{
-  swRegistration=await navigator.serviceWorker.register(
-   './service-worker.js',
-   {scope:'./'}
-  );
-
-  console.log('NOVA STUDIO Service Worker:',swRegistration.scope);
-
-  if(swRegistration.waiting){
-   showWaitingUpdate(swRegistration.waiting);
-  }
-
-  swRegistration.addEventListener('updatefound',()=>{
-   const newWorker=swRegistration.installing;
-
-   if(!newWorker)return;
-
-   newWorker.addEventListener('statechange',()=>{
-    if(
-     newWorker.state==='installed' &&
-     navigator.serviceWorker.controller
-    ){
-     showWaitingUpdate(newWorker);
+function compareVersions(a, b) {
+    const x = String(a).split('.').map(Number);
+    const y = String(b).split('.').map(Number);
+    for (let i = 0; i < Math.max(x.length, y.length); i++) {
+        const n = x[i] || 0;
+        const m = y[i] || 0;
+        if (n > m) return 1;
+        if (n < m) return -1;
     }
-   });
-  });
-
-  try{
-   await swRegistration.update();
-  }catch(updateError){
-   console.warn('NOVA STUDIO update check:',updateError);
-  }
-
- }catch(error){
-  console.error('NOVA STUDIO Service Worker error:',error);
- }
+    return 0;
 }
 
-async function loadReleases(){
- const status=document.getElementById('releaseStatus');
+async function checkUpdate() {
+    const btn = document.getElementById('updateBtn');
+    if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'در حال بررسی...';
+    }
 
- try{
-  const response=await fetch('./releases.json?v='+Date.now(),{
-   cache:'no-store'
-  });
+    try {
+        const response = await fetch('./version.json?t=' + Date.now(), {
+            cache: 'no-store'
+        });
 
-  if(!response.ok)throw new Error('فایل نسخه‌ها پیدا نشد.');
+        if (!response.ok) throw new Error('version file unavailable');
 
-  const data=await response.json();
+        const data = await response.json();
 
-  if(!data.latest_version){
-   throw new Error('اطلاعات نسخه معتبر نیست.');
-  }
+        if (!data.version) throw new Error('invalid version');
 
-  document.getElementById('latestVersion').textContent=
-   'نسخه '+data.latest_version;
+        const result = compareVersions(data.version, NOVA_VERSION);
 
-  document.getElementById('latestDate').textContent=
-   'تاریخ انتشار: '+(data.release_date||'نامشخص');
-
-  document.getElementById('latestNotes').innerHTML=
-   makeNotes(data.release_notes);
-
-  document.getElementById('platformLabel').textContent=
-   data.platform==='android'?'نسخه اندروید':'نسخه وب';
-
-  const download=document.getElementById('downloadButton');
-  const downloadURL=safeURL(data.download_url);
-
-  if(downloadURL){
-   download.href=downloadURL;
-   download.style.display='inline-block';
-   download.textContent=data.platform==='android'
-    ?'دریافت فایل APK'
-    :'باز کردن وب‌اپ';
-  }else{
-   download.style.display='none';
-  }
-
-  if(compareVersions(data.latest_version,CURRENT_VERSION)>0){
-   showUpdateBanner(
-    'نسخه جدید نوا منتشر شد!',
-    'نسخه '+data.latest_version+
-    ' منتشر شده است. نسخه فعلی صفحه '+CURRENT_VERSION+' است.'
-   );
-  }
-
-  renderHistory(data);
-  status.textContent='اطلاعات نسخه با موفقیت دریافت شد.';
-
- }catch(error){
-  status.textContent=
-   'دریافت اطلاعات نسخه ناموفق بود. اتصال اینترنت را بررسی کن.';
-
-  document.getElementById('releaseHistory').innerHTML=
-   '<div class="card empty">فعلاً امکان دریافت تاریخچه نسخه‌ها وجود ندارد.</div>';
-
-  console.error('NOVA STUDIO releases error:',error);
- }
+        if (result > 0) {
+            notify('نسخه جدید NOVA STUDIO پیدا شد؛ در حال بروزرسانی...');
+            setTimeout(() => location.reload(), 1600);
+        } else {
+            notify('شما از آخرین نسخه استفاده می‌کنید ✓');
+        }
+    } catch (error) {
+        notify('بررسی آپدیت ناموفق بود؛ اتصال سایت را بررسی کنید.');
+    } finally {
+        if (btn) {
+            btn.disabled = false;
+            btn.textContent = '↻ آپدیت';
+        }
+    }
 }
 
-function renderHistory(data){
- const history=document.getElementById('releaseHistory');
- const releases=Array.isArray(data.releases)?data.releases:[];
 
- if(!releases.length){
-  history.innerHTML=
-   '<div class="card empty">هنوز نسخه دیگری منتشر نشده است.</div>';
-  return;
- }
+const NOVA_API = 'http://127.0.0.1:8000';
 
- history.innerHTML=releases.map(release=>{
-  const url=safeURL(release.download_url);
-
-  const downloadButton=url
-   ?'<a class="download-link" href="'+escapeHTML(url)+'">دریافت این نسخه</a>'
-   :'';
-
-  return `
-   <div class="card release-card">
-    <div class="release-head">
-     <strong class="version">
-      نسخه ${escapeHTML(release.version||'نامشخص')}
-     </strong>
-     <span class="release-date">
-      ${escapeHTML(release.date||'')}
-     </span>
-    </div>
-    <ul class="release-notes">${makeNotes(release.notes)}</ul>
-    ${downloadButton}
-   </div>
-  `;
- }).join('');
+function applyTheme(theme) {
+    const light = theme === 'light';
+    document.body.classList.toggle('light', light);
+    const btn = document.getElementById('themeBtn');
+    if (btn) {
+        btn.textContent = light ? '☀️' : '🌙';
+        btn.title = light ? 'فعال‌کردن حالت شب' : 'فعال‌کردن حالت روشنایی';
+    }
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.content = light ? '#f3f5fa' : '#08090d';
 }
 
-document.getElementById('updateNowButton').addEventListener(
- 'click',
- applyUpdate
-);
+function toggleTheme() {
+    const next = document.body.classList.contains('light') ? 'dark' : 'light';
+    localStorage.setItem('nova_theme', next);
+    applyTheme(next);
+    notify(next === 'light' ? 'حالت روشنایی فعال شد ☀️' : 'حالت شب فعال شد 🌙');
+}
 
-navigator.serviceWorker?.addEventListener('controllerchange',()=>{
- if(isReloading)return;
+async function loadGlobalStats() {
+    try {
+        const response = await fetch(NOVA_API + '/api/stats', {
+            cache: 'no-store'
+        });
+        if (!response.ok) throw new Error('API error');
 
- isReloading=true;
- window.location.reload();
-});
+        const data = await response.json();
+        const format = value =>
+            new Intl.NumberFormat('fa-IR').format(Number(value) || 0);
 
-document.addEventListener('DOMContentLoaded',()=>{
- loadReleases();
- registerNOVAServiceWorker();
- initAuth();
-});
+        document.getElementById('globalUsers').textContent = format(data.users);
+        document.getElementById('globalBots').textContent = format(data.bots);
+        document.getElementById('globalActiveBots').textContent = format(data.active_bots);
+        document.getElementById('globalGroups').textContent = format(data.groups);
+    } catch (error) {
+        console.warn('NOVA stats unavailable:', error);
+        ['globalUsers','globalBots','globalActiveBots','globalGroups'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.textContent = '—';
+        });
+    }
+}
+
+applyTheme(localStorage.getItem('nova_theme') || 'dark');
+loadGlobalStats();
+setInterval(loadGlobalStats, 30000);
+
+renderBots();
 </script>
-
 </body>
 </html>
