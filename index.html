@@ -227,23 +227,128 @@ body.light .tags-note{color:#697386}
  .tag-filter{flex:1}
 }
 
+
+/* NOVA STUDIO HOMEPAGE */
+.nova-home-hero{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:25px;min-height:340px;padding:42px;border:1px solid #a77b354d;border-radius:25px;background:radial-gradient(ellipse at 80% 30%,#b17b2930,transparent 45%),linear-gradient(115deg,#17130e,#11131b 65%);box-shadow:0 20px 60px #0003}
+.nova-home-content{position:relative;z-index:1;max-width:650px}
+.nova-label,.nova-section-title span,.nova-bottom-banner span{font-size:10px;letter-spacing:2px;color:var(--gold)}
+.nova-home-hero h2{font-size:clamp(25px,4vw,42px);line-height:1.65;margin:15px 0}
+.nova-home-hero h2 span{color:var(--gold2)}
+.nova-home-hero p{font-size:13px;line-height:2.2;color:#c2c0b9;max-width:570px}
+.nova-hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.nova-trust{font-size:10px;color:#aaa;margin-top:22px}
+.nova-hero-visual{flex:0 0 230px;height:230px;border-radius:50%;border:1px solid #c3944055;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle,#49351c 0%,#17130f 65%);box-shadow:0 0 70px #d99c3520;position:relative}
+.nova-orbit{font-size:100px;font-weight:900;color:var(--gold2);text-shadow:0 0 35px #e4ae4a66}
+.nova-orbit-small{position:absolute;top:25px;right:10px;font-size:35px}
+.nova-hero-visual span{font-weight:900;letter-spacing:5px;color:var(--gold2)}
+.nova-hero-visual small{font-size:8px;color:#999;letter-spacing:2px;margin-top:5px}
+.nova-section-title{display:flex;align-items:center;justify-content:space-between;margin:35px 0 16px}
+.nova-section-title h3{font-size:17px;margin:7px 0 0}
+.nova-section-title span{font-size:9px}
+.nova-live{color:#5bd69a!important;letter-spacing:0!important}
+.nova-stats{margin-top:0}
+.nova-feature-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+.nova-feature{padding:21px;border:1px solid var(--line);border-radius:17px;background:linear-gradient(145deg,#171923,#101117);cursor:pointer;transition:.2s}
+.nova-feature:hover{transform:translateY(-4px);border-color:#a77b35}
+.nova-feature i{font-style:normal;font-size:28px}
+.nova-feature h3{font-size:13px;margin:15px 0 7px}
+.nova-feature p,.nova-steps p{font-size:10px;line-height:2;color:var(--muted);min-height:40px}
+.nova-feature b{font-size:10px;color:var(--gold2)}
+.nova-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.nova-steps>div{position:relative;padding:22px;border:1px solid var(--line);border-radius:17px;background:var(--panel)}
+.nova-steps strong{position:absolute;left:17px;top:12px;color:#a77b3566;font-size:25px}
+.nova-steps i{font-style:normal;font-size:27px}
+.nova-steps h3{font-size:13px;margin:13px 0 5px}
+.nova-bottom-banner{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-top:30px;padding:25px;border:1px solid #9d742f66;border-radius:18px;background:linear-gradient(100deg,#352718,#17130f)}
+.nova-bottom-banner h3{font-size:17px;margin:8px 0}
+.nova-bottom-banner p{font-size:10px;color:#c2c0b9;line-height:2}
+.nova-faq{display:grid;gap:9px}
+.nova-faq details{border:1px solid var(--line);background:var(--panel);border-radius:13px;padding:16px}
+.nova-faq summary{font-size:12px;cursor:pointer;font-weight:700}
+.nova-faq p{font-size:11px;color:var(--muted);line-height:2;margin:12px 0 0}
+body.light .nova-home-hero{background:linear-gradient(115deg,#fff1d3,#fff 75%);border-color:#e8d3a6}
+body.light .nova-home-hero p,body.light .nova-trust{color:#62616a}
+body.light .nova-feature,body.light .nova-steps>div{background:#fff;border-color:var(--line)}
+body.light .nova-bottom-banner{background:linear-gradient(100deg,#fff1d3,#fff)}
+body.light .nova-bottom-banner p{color:#62616a}
+body.light .nova-faq details{background:#fff}
+@media(max-width:900px){.nova-feature-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.nova-home-hero{padding:24px;min-height:0}.nova-hero-visual{display:none}.nova-home-hero h2{font-size:25px}.nova-home-hero p{font-size:11px}.nova-section-title{margin-top:27px}.nova-section-title h3{font-size:14px}.nova-feature-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.nova-feature{padding:15px}.nova-feature p{min-height:55px}.nova-steps{grid-template-columns:1fr}.nova-steps>div{padding:17px}.nova-bottom-banner{align-items:flex-start;flex-direction:column}.nova-bottom-banner h3{font-size:15px}}
+
+
+/* NOVA STUDIO PORTAL */
+.sidebar{overflow-y:auto;scrollbar-width:thin}
+.sidebar .nav-title{margin-top:8px}
+.sidebar .nav button{font-size:12px}
+.portal-hero{padding:28px;margin:18px 0;border:1px solid #8b682b66;border-radius:20px;background:radial-gradient(circle at 10% 10%,#6b4b2055,transparent 55%),linear-gradient(120deg,#211b13,#11131a);line-height:2}
+.portal-hero>span{font-size:38px}
+.portal-hero h2{font-size:23px;margin:8px 0}
+.portal-hero p{font-size:12px;color:var(--muted);max-width:650px}
+.portal-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px}
+.portal-card{background:linear-gradient(145deg,#171923,#101117);border:1px solid var(--line);border-radius:17px;padding:20px;min-width:0}
+.portal-card>span{font-size:27px}
+.portal-card h3{font-size:14px;margin:10px 0 6px}
+.portal-card p{font-size:11px;color:var(--muted);line-height:2}
+.portal-card button{margin-top:8px}
+.portal-hero a{display:inline-block;text-decoration:none}
+@media(max-width:850px){.portal-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.portal-grid{grid-template-columns:1fr}.sidebar{padding-bottom:25px}}
+
+
+.nova-auth-ui{max-width:520px;margin:24px auto;padding:24px}
+.nova-auth-head{text-align:center;margin-bottom:22px}
+.nova-auth-head h2{margin:12px 0 6px}
+.nova-auth-head p{color:var(--muted);font-size:13px}
+.nova-auth-tabs{display:flex;gap:10px;margin-bottom:18px}
+.nova-auth-tabs button{flex:1}
+.nova-auth-form{display:flex;flex-direction:column;gap:10px}
+.nova-auth-form label{font-size:13px;color:var(--muted)}
+.nova-auth-form input{width:100%;padding:13px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:inherit;box-sizing:border-box}
+.nova-auth-form button{margin-top:10px}
+.nova-auth-message{min-height:22px;text-align:center;font-size:13px;margin-top:14px;color:var(--muted)}
+.nova-auth-ui [hidden]{display:none!important}
+.password-rules{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:5px 0 12px;padding:12px;background:var(--bg);border:1px solid var(--line);border-radius:12px}
+.password-rule{font-size:12px;color:#ef6666;transition:color .2s}
+.password-rule.valid{color:#27c477}
+.password-rule::before{content:"✕";margin-left:6px}
+.password-rule.valid::before{content:"✓"}
+@media(max-width:480px){.password-rules{grid-template-columns:1fr}}
+
+#authProfile .profile{margin:18px 0}
+#authProfile button{width:100%;margin-top:12px}
+
 </style>
 </head>
 <body>
 <div class="app">
 <aside class="sidebar" id="sidebar">
 <div class="brand"><div class="logo">Ⓝ</div><div><h2>NOVA STUDIO</h2><small>BOT BUILDER</small></div></div>
-<div class="nav-title">فضای کاری</div>
+
+<div class="nav-title">منوی اصلی</div>
 <nav class="nav">
-<button class="active" data-page="home"><span class="ico">⌂</span>داشبورد</button>
-<button data-page="bots"><span class="ico">🤖</span>ربات‌های من</button>
-<button data-page="settings"><span class="ico">⚙️</span>تنظیمات</button>
-<button data-page="tools"><span class="ico">🧰</span>ابزارها</button>
-<button data-page="tags"><span class="ico">🏷️</span>تگ‌های پویا</button>
-<button data-page="vip"><span class="ico">💎</span>اشتراک VIP</button>
+<button class="active" data-page="home"><span class="ico">⌂</span>خانه</button>
+<button data-page="bots"><span class="ico">🤖</span>داشبورد ربات‌ها</button>
+<button data-page="store"><span class="ico">🛍️</span>فروشگاه</button>
+<button data-page="services"><span class="ico">⚡</span>سرویس‌ها</button>
+<button data-page="ranking"><span class="ico">🏆</span>رتبه‌بندی</button>
 </nav>
-<div class="nav-title">حساب کاربری</div>
-<nav class="nav"><button data-page="account"><span class="ico">♙</span>حساب من</button></nav>
+<div class="nav-title">آموزش و ابزارها</div>
+<nav class="nav">
+<button data-page="learning"><span class="ico">📚</span>مرکز یادگیری</button>
+<button data-page="builder"><span class="ico">🧩</span>امکانات ربات‌ساز</button>
+<button data-page="builder-guide"><span class="ico">📖</span>راهنمای ربات‌ساز</button>
+<button data-page="videos"><span class="ico">🎬</span>ویدیوهای آموزشی</button>
+<button data-page="tools"><span class="ico">🧰</span>ابزارها</button>
+<button data-page="tags"><span class="ico">🏷️</span>دستورات و تگ‌ها</button>
+<button data-page="settings"><span class="ico">⚙️</span>تنظیمات</button>
+</nav>
+<div class="nav-title">حساب و پشتیبانی</div>
+<nav class="nav">
+<button data-page="vip"><span class="ico">💎</span>اشتراک VIP</button>
+<button data-page="support"><span class="ico">🎧</span>پشتیبانی</button>
+<button data-page="rules"><span class="ico">📜</span>قوانین</button>
+<button data-page="account"><span class="ico">♙</span>پروفایل من</button>
+</nav>
 <div class="side-bottom"><div class="profile"><div class="avatar">Ⓝ</div><div><b>کاربر NOVA</b><small>حساب آزمایشی</small></div></div></div>
 </aside>
 <main class="main">
@@ -261,28 +366,57 @@ body.light .tags-note{color:#697386}
 </header>
 
 <section class="page active" id="home">
-<div class="hero">
-<div class="hero-content">
-<div class="eyebrow">✦ YOUR IDEAS, OUR TECHNOLOGY</div>
-<h2>قدرت ساخت، در دستان توست!</h2>
-<p>با NOVA STUDIO ربات خودت رو بساز، مدیریت کن و امکاناتش رو گسترش بده.</p>
-<button class="gold-btn" onclick="openAdd()">شروع ساخت ربات ←</button>
-</div><div class="hero-art">👑</div>
+<div class="nova-home-hero">
+  <div class="nova-home-content">
+    <span class="nova-label">✦ NOVA STUDIO · RUBIKA BOT BUILDER</span>
+    <h2>ایده‌هات رو به<br><span>ربات‌های هوشمند</span> تبدیل کن!</h2>
+    <p>بدون نیاز به برنامه‌نویسی، ربات روبیکای خودت رو بساز، امکاناتش رو مدیریت کن و کسب‌وکارت رو گسترش بده.</p>
+    <div class="nova-hero-actions">
+      <button class="gold-btn" onclick="openAdd()">🚀 ساخت ربات من</button>
+      <button class="secondary" onclick="go('tools')">آموزش و راهنما ←</button>
+    </div>
+    <div class="nova-trust">✦ ساده، سریع و همیشه در دسترس</div>
+  </div>
+  <div class="nova-hero-visual">
+    <div class="nova-orbit">Ⓝ</div>
+    <div class="nova-orbit-small">🤖</div>
+    <span>NOVA</span>
+    <small>SMART BOT PLATFORM</small>
+  </div>
 </div>
-<div class="stats">
-<div class="stat"><div class="stat-icon">👥</div><div><small>سازندگان ثبت‌شده</small><strong id="globalUsers">۰</strong></div></div>
-<div class="stat"><div class="stat-icon">🤖</div><div><small>کل ربات‌های ساخته‌شده</small><strong id="globalBots">۰</strong></div></div>
-<div class="stat"><div class="stat-icon">⚡</div><div><small>ربات‌های فعال</small><strong id="globalActiveBots">۰</strong></div></div>
-<div class="stat"><div class="stat-icon">💬</div><div><small>گروه‌های فعال</small><strong id="globalGroups">۰</strong></div></div>
+<div class="nova-section-title">
+  <div><span>PLATFORM OVERVIEW</span><h3>آمار و وضعیت پلتفرم</h3></div>
+  <span class="nova-live">● LIVE</span>
 </div>
-<div class="section-head"><h3>دسترسی سریع</h3><span>QUICK ACCESS</span></div>
-<div class="cards">
-<div class="card" onclick="go('bots')"><span class="arrow">←</span><div class="card-icon">🤖</div><h3>ربات‌های من</h3><p>مشاهده و مدیریت ربات‌های ساخته‌شده</p></div>
-<div class="card" onclick="go('settings')"><span class="arrow">←</span><div class="card-icon">⚙️</div><h3>تنظیمات ربات</h3><p>شخصی‌سازی و مدیریت تنظیمات</p></div>
-<div class="card" onclick="go('tools')"><span class="arrow">←</span><div class="card-icon">🧰</div><h3>ابزارهای کاربردی</h3><p>ابزارهای مورد نیاز برای ساخت ربات</p></div>
-<div class="card" onclick="go('vip')"><span class="arrow">←</span><div class="card-icon">💎</div><h3>اشتراک VIP</h3><p>امکانات ویژه و حرفه‌ای NOVA</p></div>
+<div class="stats nova-stats">
+  <div class="stat"><div class="stat-icon">👥</div><div><small>سازندگان ثبت‌شده</small><strong id="globalUsers">۰</strong></div></div>
+  <div class="stat"><div class="stat-icon">🤖</div><div><small>ربات‌های ثبت‌شده</small><strong id="globalBots">۰</strong></div></div>
+  <div class="stat"><div class="stat-icon">⚡</div><div><small>ربات‌های فعال</small><strong id="globalActiveBots">۰</strong></div></div>
+  <div class="stat"><div class="stat-icon">💬</div><div><small>گروه‌های فعال</small><strong id="globalGroups">۰</strong></div></div>
 </div>
-<div class="panel"><div class="panel-head"><h3>آخرین فعالیت‌ها</h3><span class="tag">LIVE</span></div><div class="empty"><div>✦</div>هنوز فعالیتی ثبت نشده است.</div></div>
+<div class="nova-section-title"><div><span>WHAT YOU CAN DO</span><h3>همه‌چیز برای ساخت یک ربات حرفه‌ای</h3></div></div>
+<div class="nova-feature-grid">
+  <div class="nova-feature" onclick="go('bots')"><i>🤖</i><h3>مدیریت ربات‌ها</h3><p>ربات‌هایت را ثبت و از یک پنل مدیریت کن.</p><b>مشاهده ربات‌ها ←</b></div>
+  <div class="nova-feature" onclick="go('tools')"><i>🔐</i><h3>اتصال امن</h3><p>ابزارهای اتصال و بررسی توکن ربات.</p><b>مشاهده ابزارها ←</b></div>
+  <div class="nova-feature" onclick="go('tags')"><i>🏷️</i><h3>تگ‌های پویا</h3><p>کتابخانه تگ‌ها برای ساخت پاسخ‌های هوشمند.</p><b>مشاهده تگ‌ها ←</b></div>
+  <div class="nova-feature" onclick="go('vip')"><i>💎</i><h3>امکانات VIP</h3><p>با سرویس‌های ویژه، تجربه حرفه‌ای‌تری داشته باش.</p><b>مشاهده اشتراک‌ها ←</b></div>
+</div>
+<div class="nova-section-title"><div><span>GET STARTED</span><h3>شروع کار فقط در سه مرحله</h3></div></div>
+<div class="nova-steps">
+  <div><strong>01</strong><i>➕</i><h3>ثبت ربات</h3><p>ربات موردنظرت را به پنل معرفی کن.</p></div>
+  <div><strong>02</strong><i>⚙️</i><h3>تنظیم و شخصی‌سازی</h3><p>امکانات موردنیازت را انتخاب کن.</p></div>
+  <div><strong>03</strong><i>🚀</i><h3>شروع فعالیت</h3><p>رباتت را آماده استفاده کن.</p></div>
+</div>
+<div class="nova-bottom-banner">
+  <div><span>READY TO BUILD?</span><h3>ساخت رباتت رو همین حالا شروع کن!</h3><p>قدم اول برای ساخت دستیار هوشمندت فقط یک کلیک فاصله داره.</p></div>
+  <button class="gold-btn" onclick="openAdd()">＋ شروع ساخت</button>
+</div>
+<div class="nova-section-title"><div><span>FAQ</span><h3>سؤالات متداول</h3></div></div>
+<div class="nova-faq">
+  <details><summary>آیا برای ساخت ربات به برنامه‌نویسی نیاز دارم؟</summary><p>هدف NOVA STUDIO ساده‌سازی فرایند ساخت و مدیریت ربات است. امکانات هر بخش طبق قابلیت‌های فعال پنل ارائه می‌شود.</p></details>
+  <details><summary>چطور رباتم را به پنل اضافه کنم؟</summary><p>از بخش ربات‌های من، گزینه افزودن ربات را انتخاب کن. اتصال واقعی پس از تکمیل و راه‌اندازی API در دسترس خواهد بود.</p></details>
+  <details><summary>چطور با پشتیبانی ارتباط بگیرم؟</summary><p>از طریق آیدی پشتیبانی NOVA در روبیکا پیام بده.</p></details>
+</div>
 </section>
 
 <section class="page" id="bots">
@@ -323,6 +457,8 @@ body.light .tags-note{color:#697386}
 .vip-features li:before{content:"✓";color:#d9b45b;font-weight:bold;margin-left:8px}
 .vip-buy{display:block;text-align:center;text-decoration:none;background:linear-gradient(135deg,#d9b45b,#a77b25);color:#17130a!important;padding:13px;border-radius:12px;font-weight:800;margin-top:auto}
 .vip-note{font-size:12px;opacity:.75;text-align:center}
+
+[hidden]{display:none!important}
 </style>
 <section class="page" id="vip">
 <div class="hero">
@@ -353,6 +489,7 @@ body.light .tags-note{color:#697386}
 <li>تنظیمات اختصاصی گروه</li>
 </ul>
 <a class="vip-buy" href="https://rubika.ir/NOVA_Supporter" target="_blank" rel="noopener noreferrer">💬 خرید VIP PLUS</a>
+<button class="tag-copy" type="button" onclick="copyVipSupportId()">📋 کپی آیدی پشتیبانی</button>
 <p class="vip-note">برای خرید و فعال‌سازی با پشتیبانی تماس بگیرید.</p>
 </article>
 <article class="vip-plan pro">
@@ -375,6 +512,7 @@ body.light .tags-note{color:#697386}
 <li>حذف تبلیغات نوا استودیو</li>
 </ul>
 <a class="vip-buy" href="https://rubika.ir/NOVA_Supporter" target="_blank" rel="noopener noreferrer">👑 خرید VIP PRO PLUS</a>
+<button class="tag-copy" type="button" onclick="copyVipSupportId()">📋 کپی آیدی پشتیبانی</button>
 <p class="vip-note">برای خرید و فعال‌سازی با پشتیبانی تماس بگیرید.</p>
 </article>
 </div>
@@ -382,9 +520,62 @@ body.light .tags-note{color:#697386}
 </section>
 
 
+
 <section class="page" id="account">
-<div class="panel"><h3>حساب کاربری</h3><div class="profile"><div class="avatar">Ⓝ</div><div><b>کاربر NOVA</b><small>حساب آزمایشی نسخه وب</small></div></div><div class="bot-item">نوع حساب <span class="tag">رایگان</span></div><div class="bot-item">وضعیت <span class="tag">آزمایشی</span></div></div>
+  <div class="panel nova-auth-ui">
+    <div class="nova-auth-head">
+      <div class="avatar">Ⓝ</div>
+      <h2>حساب کاربری NOVA</h2>
+      <p>برای استفاده از امکانات پنل، وارد حساب خود شو.</p>
+    </div>
+
+    <div id="authForms">
+      <div class="nova-auth-tabs">
+        <button type="button" class="btn" id="showLogin">ورود</button>
+        <button type="button" class="btn" id="showRegister">ثبت‌نام</button>
+      </div>
+
+      <form id="loginForm" class="nova-auth-form">
+        <label>نام کاربری</label>
+        <input id="loginUsername" type="text" minlength="3" maxlength="24" required placeholder="نام کاربری انگلیسی">
+        <label>رمز عبور</label>
+        <input id="loginPassword" type="password" minlength="8" maxlength="128" required placeholder="رمز عبور">
+        <button class="btn primary" type="submit">ورود به حساب</button>
+      </form>
+
+      <form id="registerForm" class="nova-auth-form" hidden>
+        <label>نام کاربری</label>
+        <input id="registerUsername" type="text" minlength="3" maxlength="24" pattern="[A-Za-z0-9_]{3,24}" required placeholder="حداقل ۳ کاراکتر انگلیسی">
+        <label>رمز عبور</label>
+        <input id="registerPassword" type="password" minlength="8" maxlength="128" required placeholder="حداقل ۸ کاراکتر">
+        <div class="password-rules" id="passwordRules">
+          <div class="password-rule" data-rule="length">حداقل ۸ کاراکتر</div>
+          <div class="password-rule" data-rule="number">یک عدد انگلیسی</div>
+          <div class="password-rule" data-rule="upper">یک حرف بزرگ انگلیسی</div>
+          <div class="password-rule" data-rule="lower">یک حرف کوچک انگلیسی</div>
+          <div class="password-rule" data-rule="special">یک نویسه ویژه مثل @ یا #</div>
+        </div>
+        <label>تکرار رمز عبور</label>
+        <input id="registerPassword2" type="password" minlength="8" maxlength="128" required placeholder="تکرار رمز عبور">
+        <button class="btn primary" type="submit">ساخت حساب کاربری</button>
+      </form>
+    </div>
+
+    <div id="authProfile" hidden>
+      <div class="profile">
+        <div class="avatar">Ⓝ</div>
+        <div><b id="authDisplayName">کاربر</b><small>حساب کاربری NOVA</small></div>
+      </div>
+      <div class="bot-item">وضعیت <span class="tag">فعال</span></div>
+      <div class="bot-item">شناسه پشتیبانی <b>@NOVA_Supporter</b></div>
+      <button type="button" class="btn" id="copySupportId">کپی شناسه پشتیبانی</button>
+      <button type="button" class="btn" id="logoutButton">خروج از حساب</button>
+    </div>
+
+    <p id="authMessage" class="nova-auth-message" aria-live="polite"></p>
+  </div>
 </section>
+
 
 <section class="page" id="tags">
  <div class="tags-hero">
@@ -484,6 +675,76 @@ body.light .tags-note{color:#697386}
  </div>
 </section>
 
+
+<section class="page" id="store">
+<div class="section-head"><h3>فروشگاه NOVA</h3><span>محصولات و امکانات</span></div>
+<div class="portal-hero"><span>🛍️</span><h2>فروشگاه نوا</h2><p>امکانات و سرویس‌های موردنیازت را از این بخش دنبال کن.</p></div>
+<div class="portal-grid">
+<div class="portal-card"><span>💎</span><h3>اشتراک VIP</h3><p>دسترسی به امکانات پیشرفته مدیریت گروه</p><button class="gold-btn" onclick="go('vip')">مشاهده پلن‌ها</button></div>
+<div class="portal-card"><span>🤖</span><h3>ربات‌های من</h3><p>ربات‌های ساخته‌شده خودت را مدیریت کن.</p><button class="secondary" onclick="go('bots')">ورود به ربات‌ها</button></div>
+</div></section>
+
+<section class="page" id="services">
+<div class="section-head"><h3>سرویس‌های NOVA</h3><span>خدمات پلتفرم</span></div>
+<div class="portal-hero"><span>⚡</span><h2>سرویس‌های هوشمند</h2><p>ابزارهای ساخت، مدیریت و توسعه ربات روبیکا در یک محیط یکپارچه.</p></div>
+<div class="portal-grid">
+<div class="portal-card"><span>🛠️</span><h3>مدیریت ربات</h3><p>مدیریت و بررسی ربات‌های ثبت‌شده.</p><button class="secondary" onclick="go('bots')">مشاهده</button></div>
+<div class="portal-card"><span>⚙️</span><h3>تنظیمات</h3><p>تنظیمات مربوط به فضای کاری.</p><button class="secondary" onclick="go('settings')">مشاهده</button></div>
+</div></section>
+
+<section class="page" id="ranking">
+<div class="section-head"><h3>رتبه‌بندی</h3><span>جدول برترین‌ها</span></div>
+<div class="portal-hero"><span>🏆</span><h2>برترین سازندگان NOVA</h2><p>بخش رتبه‌بندی در حال آماده‌سازی اتصال به آمار واقعی پلتفرم است.</p></div>
+<div class="panel empty">هنوز اطلاعات رتبه‌بندی از سرور دریافت نمی‌شود.</div>
+</section>
+
+<section class="page" id="learning">
+<div class="section-head"><h3>مرکز یادگیری</h3><span>شروع سریع</span></div>
+<div class="portal-hero"><span>📚</span><h2>یادگیری ساخت ربات</h2><p>از آشنایی اولیه تا مدیریت و توسعه ربات روبیکا.</p></div>
+<div class="portal-grid">
+<div class="portal-card"><span>🚀</span><h3>شروع کار</h3><p>با محیط NOVA STUDIO آشنا شو.</p></div>
+<div class="portal-card"><span>🔐</span><h3>امنیت ربات</h3><p>با اصول نگهداری امن اطلاعات ربات آشنا شو.</p></div>
+<div class="portal-card"><span>⚙️</span><h3>مدیریت ربات</h3><p>تنظیمات و ابزارهای مدیریتی را بشناس.</p></div>
+</div></section>
+
+<section class="page" id="builder">
+<div class="section-head"><h3>امکانات ربات‌ساز</h3><span>ویژگی‌ها</span></div>
+<div class="portal-hero"><span>🧩</span><h2>ابزارهای ساخت ربات</h2><p>امکانات طراحی‌شده برای ساده‌ترشدن مدیریت و توسعه ربات‌ها.</p></div>
+<div class="portal-grid">
+<div class="portal-card"><span>🤖</span><h3>مدیریت ربات‌ها</h3><p>دسترسی یکپارچه به ربات‌های ثبت‌شده.</p></div>
+<div class="portal-card"><span>🏷️</span><h3>تگ‌های پویا</h3><p>استفاده از تگ‌ها و دستورات آماده.</p><button class="secondary" onclick="go('tags')">مشاهده تگ‌ها</button></div>
+<div class="portal-card"><span>🧰</span><h3>ابزارها</h3><p>ابزارهای کاربردی پنل.</p><button class="secondary" onclick="go('tools')">ورود به ابزارها</button></div>
+</div></section>
+
+<section class="page" id="builder-guide">
+<div class="section-head"><h3>راهنمای ربات‌ساز</h3><span>راهنمای شروع</span></div>
+<div class="portal-hero"><span>📖</span><h2>راهنمای استفاده از NOVA</h2><p>برای شروع، مراحل زیر را دنبال کن.</p></div>
+<div class="portal-grid">
+<div class="portal-card"><b>01</b><h3>ثبت ربات</h3><p>از بخش ربات‌های من، ربات موردنظر را ثبت کن.</p></div>
+<div class="portal-card"><b>02</b><h3>تنظیمات</h3><p>تنظیمات موردنیاز را بررسی و تکمیل کن.</p></div>
+<div class="portal-card"><b>03</b><h3>مدیریت</h3><p>وضعیت ربات را از داشبورد دنبال کن.</p></div>
+</div></section>
+
+<section class="page" id="videos">
+<div class="section-head"><h3>ویدیوهای آموزشی</h3><span>آموزش تصویری</span></div>
+<div class="portal-hero"><span>🎬</span><h2>آموزش ویدیویی</h2><p>ویدیوهای آموزشی NOVA STUDIO در این بخش قرار می‌گیرند.</p></div>
+<div class="panel empty">ویدیو آموزشی هنوز اضافه نشده است.</div>
+</section>
+
+<section class="page" id="support">
+<div class="section-head"><h3>پشتیبانی</h3><span>ارتباط با ما</span></div>
+<div class="portal-hero"><span>🎧</span><h2>همراهت هستیم!</h2><p>برای گزارش مشکل، ارسال پیشنهاد یا دریافت راهنمایی با پشتیبانی ارتباط بگیر.</p><a class="gold-btn" href="https://rubika.ir/NOVA_Supporter" target="_blank" rel="noopener">ارتباط با پشتیبانی</a></div>
+</section>
+
+<section class="page" id="rules">
+<div class="section-head"><h3>قوانین و مقررات</h3><span>استفاده از پلتفرم</span></div>
+<div class="portal-hero"><span>📜</span><h2>قوانین NOVA STUDIO</h2><p>استفاده از خدمات باید مطابق قوانین روبیکا و رعایت حقوق دیگر کاربران باشد.</p></div>
+<div class="portal-grid">
+<div class="portal-card"><h3>امنیت حساب</h3><p>اطلاعات ورود و توکن ربات خود را در اختیار دیگران قرار نده.</p></div>
+<div class="portal-card"><h3>استفاده مسئولانه</h3><p>از ابزارها برای مزاحمت، ارسال ناخواسته پیام یا نقض قوانین استفاده نکن.</p></div>
+<div class="portal-card"><h3>احترام به کاربران</h3><p>حقوق و حریم خصوصی سایر کاربران را رعایت کن.</p></div>
+</div></section>
+
 </main>
 </div>
 
@@ -508,7 +769,7 @@ body.light .tags-note{color:#697386}
 </div>
 
 <script>
-const titles={home:'داشبورد',bots:'ربات‌های من',settings:'تنظیمات',tools:'ابزارها',tags:'تگ‌های پویا',vip:'اشتراک VIP',account:'حساب کاربری'};
+const titles={home:'خانه',bots:'داشبورد ربات‌ها',settings:'تنظیمات',tools:'ابزارها',tags:'دستورات و تگ‌ها',vip:'اشتراک VIP',account:'پروفایل من',store:'فروشگاه',services:'سرویس‌ها',ranking:'رتبه‌بندی',learning:'مرکز یادگیری',builder:'امکانات ربات‌ساز','builder-guide':'راهنمای ربات‌ساز',videos:'ویدیوهای آموزشی',support:'پشتیبانی',rules:'قوانین'};
 let toastTimer;
 function notify(message){
 const t=document.getElementById('toast');t.textContent=message;t.style.display='block';
@@ -548,6 +809,30 @@ list.innerHTML=bots.map((b,i)=>`<div class="bot-item"><span>🤖 ${escapeText(b.
 }
 function escapeText(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 
+
+
+async function copyVipSupportId() {
+  const value = '@NOVA_Supporter';
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(value);
+    } else {
+      const area = document.createElement('textarea');
+      area.value = value;
+      area.style.position = 'fixed';
+      area.style.opacity = '0';
+      document.body.appendChild(area);
+      area.focus();
+      area.select();
+      const ok = document.execCommand('copy');
+      area.remove();
+      if (!ok) throw new Error('COPY_FAILED');
+    }
+    notify('آیدی @NOVA_Supporter کپی شد ✓');
+  } catch (error) {
+    notify('کپی انجام نشد؛ آیدی @NOVA_Supporter را دستی کپی کن');
+  }
+}
 
 let activeTagCategory = 'all';
 
@@ -650,7 +935,7 @@ async function checkUpdate() {
 }
 
 
-const NOVA_API = 'http://127.0.0.1:8000';
+const NOVA_API = 'http://127.0.0.1:8001';
 
 function applyTheme(theme) {
     const light = theme === 'light';
@@ -700,6 +985,232 @@ loadGlobalStats();
 setInterval(loadGlobalStats, 30000);
 
 renderBots();
+
+const AUTH_API = NOVA_API;
+
+function authMessage(message, bad=false){
+  const el=document.getElementById('authMessage');
+  if(!el) return;
+  el.textContent=message;
+  el.style.color=bad?'#ef7777':'var(--muted)';
+}
+
+function authShowMode(mode){
+  const login = document.getElementById('loginForm');
+  const register = document.getElementById('registerForm');
+
+  login.hidden = mode !== 'login';
+  register.hidden = mode !== 'register';
+
+  login.style.display = mode === 'login' ? '' : 'none';
+  register.style.display = mode === 'register' ? '' : 'none';
+
+  authMessage('');
+}
+
+function checkPasswordRules(password){
+  return {
+    length: password.length >= 8,
+    number: /[0-9]/.test(password),
+    upper: /[A-Z]/.test(password),
+    lower: /[a-z]/.test(password),
+    special: /[^A-Za-z0-9]/.test(password)
+  };
+}
+
+function updatePasswordRules(){
+  const password = document.getElementById('registerPassword').value;
+  const rules = checkPasswordRules(password);
+  Object.entries(rules).forEach(([name, valid]) => {
+    const item = document.querySelector('[data-rule="' + name + '"]');
+    if(item) item.classList.toggle('valid', valid);
+  });
+  return Object.values(rules).every(Boolean);
+}
+
+document.getElementById('registerPassword').addEventListener('input', updatePasswordRules);
+
+async function authRequest(path, data=null, token=null){
+  const headers={'Content-Type':'application/json'};
+  if(token) headers.Authorization='Bearer '+token;
+  const response=await fetch(AUTH_API+path,{
+    method:data?'POST':'GET',
+    headers,
+    body:data?JSON.stringify(data):undefined
+  });
+  const result=await response.json().catch(()=>({detail:'پاسخ سرور قابل خواندن نیست.'}));
+  if(!response.ok) throw new Error(result.detail || 'خطا در ارتباط با سرور');
+  return result;
+}
+
+function authSetProfile(user){
+  document.getElementById('authForms').hidden=true;
+  document.getElementById('authProfile').hidden=false;
+  document.getElementById('authDisplayName').textContent=user.username;
+}
+
+function authSetLoggedOut(){
+  localStorage.removeItem('nova_auth_token');
+  document.getElementById('authForms').hidden=false;
+  document.getElementById('authProfile').hidden=true;
+  authShowMode('login');
+}
+
+async function initAuth(){
+  const token=localStorage.getItem('nova_auth_token');
+  if(!token) return;
+  try{
+    const result=await authRequest('/api/auth/me',null,token);
+    authSetProfile(result.user);
+  }catch(e){
+    authSetLoggedOut();
+    authMessage('نشست قبلی معتبر نیست؛ دوباره وارد شو.',true);
+  }
+}
+
+document.getElementById('showLogin').onclick = () => authShowMode('login');
+document.getElementById('showRegister').onclick = () => authShowMode('register');
+authShowMode('login');
+
+document.getElementById('loginForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const username=document.getElementById('loginUsername').value.trim();
+  const password=document.getElementById('loginPassword').value;
+  const button=e.submitter || e.currentTarget.querySelector('button[type="submit"]');
+  if(button) button.disabled=true;
+  authMessage('در حال ورود...');
+  try{
+    const result=await authRequest('/api/auth/login',{username,password});
+    localStorage.setItem('nova_auth_token',result.token);
+    authSetProfile(result.user);
+    authMessage('با موفقیت وارد شدی.');
+  }catch(error){
+    authMessage(error.message,true);
+  }finally{
+    if(button) button.disabled=false;
+  }
+});
+
+document.getElementById('registerForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const username=document.getElementById('registerUsername').value.trim();
+  const password=document.getElementById('registerPassword').value;
+  const password2=document.getElementById('registerPassword2').value;
+  if(!updatePasswordRules()){
+    authMessage('همه شرایط رمز عبور را رعایت کن.',true);
+    return;
+  }
+  if(password!==password2){
+    authMessage('تکرار رمز عبور مطابقت ندارد.',true);
+    return;
+  }
+  const button=e.submitter || e.currentTarget.querySelector('button[type="submit"]');
+  if(button) button.disabled=true;
+  authMessage('در حال ساخت حساب...');
+  try{
+    const result=await authRequest('/api/auth/register',{username,password});
+    localStorage.setItem('nova_auth_token',result.token);
+    authSetProfile(result.user);
+    authMessage('حساب کاربری ساخته شد.');
+  }catch(error){
+    authMessage(error.message,true);
+  }finally{
+    if(button) button.disabled=false;
+  }
+});
+
+document.getElementById('logoutButton').addEventListener('click',async()=>{
+  const token=localStorage.getItem('nova_auth_token');
+  try{
+    if(token) await authRequest('/api/auth/logout',{},token);
+  }catch(e){}
+  authSetLoggedOut();
+  authMessage('از حساب خارج شدی.');
+});
+
+document.getElementById('copySupportId').addEventListener('click',async()=>{
+  try{
+    await navigator.clipboard.writeText('@NOVA_Supporter');
+    authMessage('شناسه پشتیبانی کپی شد.');
+  }catch(e){
+    authMessage('کپی خودکار در این مرورگر پشتیبانی نمی‌شود.',true);
+  }
+});
+
+initAuth();
+
 </script>
-</body>
+
+<script>
+(function () {
+  function switchAuth(mode) {
+    const login = document.getElementById('loginForm');
+    const register = document.getElementById('registerForm');
+    const forms = document.getElementById('authForms');
+    const profile = document.getElementById('authProfile');
+
+    if (!login || !register) return;
+
+    if (forms) forms.hidden = false;
+    if (profile) profile.hidden = true;
+
+    login.hidden = mode !== 'login';
+    register.hidden = mode !== 'register';
+
+    login.style.setProperty('display', mode === 'login' ? 'flex' : 'none', 'important');
+    register.style.setProperty('display', mode === 'register' ? 'flex' : 'none', 'important');
+  }
+
+  document.addEventListener('click', function (event) {
+    const button = event.target.closest('#showLogin, #showRegister');
+    if (!button) return;
+
+    event.preventDefault();
+    switchAuth(button.id === 'showRegister' ? 'register' : 'login');
+  }, true);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => switchAuth('login'));
+  } else {
+    switchAuth('login');
+  }
+})();
+</script>
+
+
+<script>
+(function () {
+  function refreshPasswordRules() {
+    const input = document.getElementById('registerPassword');
+    if (!input) return;
+
+    const value = input.value;
+    const checks = {
+      length: value.length >= 8,
+      number: /[0-9]/.test(value),
+      upper: /[A-Z]/.test(value),
+      lower: /[a-z]/.test(value),
+      special: /[^A-Za-z0-9]/.test(value)
+    };
+
+    Object.entries(checks).forEach(([name, valid]) => {
+      const item = document.querySelector('[data-rule="' + name + '"]');
+      if (!item) return;
+      item.classList.toggle('valid', valid);
+      item.style.color = valid ? '#27c477' : '#ef6666';
+    });
+  }
+
+  document.addEventListener('input', function (event) {
+    if (event.target.id === 'registerPassword') refreshPasswordRules();
+  });
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', refreshPasswordRules);
+  } else {
+    refreshPasswordRules();
+  }
+})();
+</script>
+\n</body>
 </html>
